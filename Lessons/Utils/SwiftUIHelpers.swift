@@ -16,6 +16,8 @@ struct EnumeratedIdentifiable<T>: Identifiable {
     var id: Int { index }
 }
 
+extension EnumeratedIdentifiable: Equatable where T: Equatable {}
+
 extension Array {
     func enumeratedIdentifiable() -> [EnumeratedIdentifiable<Element>] {
         enumerated().map { EnumeratedIdentifiable(index: $0, value: $1) }
@@ -47,5 +49,19 @@ private struct TouchDownGestureModifier: ViewModifier {
                     tapped = false
                     perform(false)
                 })
+    }
+}
+
+extension View {
+    var asAny: AnyView { AnyView(self) }
+
+    func frame(both: CGFloat, alignment: Alignment = .center) -> some View {
+        self.frame(width: both, height: both, alignment: alignment)
+    }
+}
+
+extension String {
+    var asText: Text {
+        Text(self)
     }
 }

@@ -36,6 +36,12 @@
 		5FB040CB29D0F470008C24B1 /* PromptPacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040CA29D0F470008C24B1 /* PromptPacker.swift */; };
 		5FB040D029D0FC67008C24B1 /* UnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040CF29D0FC67008C24B1 /* UnitView.swift */; };
 		5FB040D229D0FECA008C24B1 /* UnitGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040D129D0FECA008C24B1 /* UnitGen.swift */; };
+		5FF4168529E378CE007CCB5A /* ChatStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF4168429E378CE007CCB5A /* ChatStore.swift */; };
+		5FF4168729E37A5D007CCB5A /* ScrollableCenteredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF4168629E37A5D007CCB5A /* ScrollableCenteredView.swift */; };
+		5FF4168929E37C18007CCB5A /* ChatGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF4168829E37C18007CCB5A /* ChatGen.swift */; };
+		5FF4168C29E3966B007CCB5A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF4168B29E3966B007CCB5A /* ChatView.swift */; };
+		5FF4168E29E39686007CCB5A /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF4168D29E39686007CCB5A /* Animations.swift */; };
+		5FF4169029E3B14E007CCB5A /* TypingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF4168F29E3B14E007CCB5A /* TypingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +74,12 @@
 		5FB040CE29D0F9E8008C24B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5FB040CF29D0FC67008C24B1 /* UnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitView.swift; sourceTree = "<group>"; };
 		5FB040D129D0FECA008C24B1 /* UnitGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitGen.swift; sourceTree = "<group>"; };
+		5FF4168429E378CE007CCB5A /* ChatStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatStore.swift; sourceTree = "<group>"; };
+		5FF4168629E37A5D007CCB5A /* ScrollableCenteredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableCenteredView.swift; sourceTree = "<group>"; };
+		5FF4168829E37C18007CCB5A /* ChatGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGen.swift; sourceTree = "<group>"; };
+		5FF4168B29E3966B007CCB5A /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		5FF4168D29E39686007CCB5A /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		5FF4168F29E3B14E007CCB5A /* TypingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +134,7 @@
 				5F69681729D3CA4F005ECEEB /* QuizView.swift */,
 				5F69681D29D4C3BB005ECEEB /* Toybox.swift */,
 				5F79E1DA29DFC05000B91392 /* Settings.swift */,
+				5FF4168A29E394AF007CCB5A /* Chat */,
 				5FB040CD29D0F909008C24B1 /* Models */,
 				5FB040CC29D0F475008C24B1 /* LLM */,
 				5FB040BB29D0EFCD008C24B1 /* Utils */,
@@ -146,8 +159,10 @@
 				5FB040B529D0EFC1008C24B1 /* DataStore.swift */,
 				5FB040B829D0EFCA008C24B1 /* StringHelpers.swift */,
 				5FB040B729D0EFCA008C24B1 /* SwiftUIHelpers.swift */,
+				5FF4168629E37A5D007CCB5A /* ScrollableCenteredView.swift */,
 				5F69680529D1005D005ECEEB /* ArrayUtils.swift */,
 				5F69681B29D3ECC2005ECEEB /* SeededRandom.swift */,
+				5FF4168D29E39686007CCB5A /* Animations.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -172,6 +187,17 @@
 				5F69681529D11885005ECEEB /* QuestionGen.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5FF4168A29E394AF007CCB5A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5FF4168429E378CE007CCB5A /* ChatStore.swift */,
+				5FF4168829E37C18007CCB5A /* ChatGen.swift */,
+				5FF4168B29E3966B007CCB5A /* ChatView.swift */,
+				5FF4168F29E3B14E007CCB5A /* TypingView.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,14 +279,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F69681C29D3ECC2005ECEEB /* SeededRandom.swift in Sources */,
+				5FF4168C29E3966B007CCB5A /* ChatView.swift in Sources */,
 				5FB040C929D0F46D008C24B1 /* ParseConversation.swift in Sources */,
 				5F79E1DB29DFC05000B91392 /* Settings.swift in Sources */,
 				5FB040BA29D0EFCA008C24B1 /* StringHelpers.swift in Sources */,
 				5FB040A729D0EF52008C24B1 /* LessonsList.swift in Sources */,
+				5FF4168529E378CE007CCB5A /* ChatStore.swift in Sources */,
 				5FB040C129D0F3AC008C24B1 /* LessonView.swift in Sources */,
 				5FB040BF29D0F26F008C24B1 /* NewLesson.swift in Sources */,
 				5F69680D29D10ADD005ECEEB /* SlidesView.swift in Sources */,
 				5FB040C329D0F402008C24B1 /* LessonGen.swift in Sources */,
+				5FF4169029E3B14E007CCB5A /* TypingView.swift in Sources */,
+				5FF4168929E37C18007CCB5A /* ChatGen.swift in Sources */,
 				5FB040D029D0FC67008C24B1 /* UnitView.swift in Sources */,
 				5F69681429D10E4E005ECEEB /* WebView+JS.swift in Sources */,
 				5FB040B929D0EFCA008C24B1 /* SwiftUIHelpers.swift in Sources */,
@@ -271,9 +301,11 @@
 				5F69680629D1005D005ECEEB /* ArrayUtils.swift in Sources */,
 				5F69681229D10B17005ECEEB /* WebView.swift in Sources */,
 				5FB040A529D0EF52008C24B1 /* LessonsApp.swift in Sources */,
+				5FF4168729E37A5D007CCB5A /* ScrollableCenteredView.swift in Sources */,
 				5F69681129D10B17005ECEEB /* WebContent.swift in Sources */,
 				5FB040D229D0FECA008C24B1 /* UnitGen.swift in Sources */,
 				5F69681A29D3CA61005ECEEB /* ProgressStore.swift in Sources */,
+				5FF4168E29E39686007CCB5A /* Animations.swift in Sources */,
 				5F69681629D11885005ECEEB /* QuestionGen.swift in Sources */,
 				5FB040BD29D0EFE3008C24B1 /* LessonStore.swift in Sources */,
 				5FB040C729D0F465008C24B1 /* Tokens.swift in Sources */,

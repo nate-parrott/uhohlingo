@@ -8,18 +8,21 @@ struct QuizView: View {
     @State private var generatingQuestions = false
     @State private var answers = [ProgressState.Answer]()
     @State private var showingAnswerForLastQuestion = false
+    @EnvironmentObject private var unitViewState: UnitViewState
 
     var body: some View {
         VStack {
             if let currentItem {
-                VStack(spacing: 24) {
-                    questionView(question: currentItem.question, answer: currentItem.answer)
+                ScrollView(.vertical) {
+                    VStack(spacing: 24) {
+                        questionView(question: currentItem.question, answer: currentItem.answer)
 
-                    nextButton
+                        nextButton
+                    }
+                    .padding(40)
+                    .id(currentItem.question)
+                    .transition(.slideLeftAndRight)
                 }
-                .padding(40)
-                .id(currentItem.question)
-                .transition(.slideLeftAndRight)
             } else if generatingQuestions {
                 FunProgressView()
             } else {
@@ -44,7 +47,7 @@ struct QuizView: View {
         }
     }
 
-    private var unitID: ProgressState.UnitID {
+    private var unitID: UnitID {
         .init(lessonId: lesson.id, unitIndex: unitIndex)
     }
 
@@ -73,17 +76,31 @@ struct QuizView: View {
         if let mc = question.multipleChoice {
             MultipleChoiceQuestionView(question: question, multipleChoice: mc, existingAnswer: answer) { answer in
                 showingAnswerForLastQuestion = true
-                ProgressStore.shared.model.recordAnswer(answer, for: ProgressState.UnitID(lessonId: lesson.id, unitIndex: unitIndex))
+                ProgressStore.shared.model.recordAnswer(answer, for: UnitID(lessonId: lesson.id, unitIndex: unitIndex))
             }
         }
     }
 
     @ViewBuilder private var nextButton: some View {
-        FunButtonOnTouchdown(action: { showingAnswerForLastQuestion = false }, options: .init()) {
-            Text("Continue")
+        HStack(spacing: 24) {
+            FunButtonOnTouchdown(action: { explain() }, options: .init()) {
+                Text("Explain it!")
+            }
+
+            FunButtonOnTouchdown(action: { showingAnswerForLastQuestion = false }, options: .init()) {
+                Text("Continue")
+            }
         }
         .opacity(showingAnswerForLastQuestion ? 1 : 0)
         .accessibilityHidden(showingAnswerForLastQuestion ? false : true)
+    }
+
+    private func explain() {
+        guard let answer = currentItem?.answer else { return }
+        unitViewState.mode = .chat
+        Task {
+            try? await ChatStore.shared.send(message: .userWantsExplanation(answer), toThreadForUnit: .init(lessonId: lesson.id, unitIndex: unitIndex))
+        }
     }
 }
 

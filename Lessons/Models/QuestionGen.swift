@@ -31,7 +31,7 @@ extension LessonStore {
     func ensureQuizGenerated(lessonId: String, unitIndex: Int) async throws {
         guard let lesson = await getModel().lessons[lessonId] else { return }
         guard let unit = lesson.units.get(unitIndex) else { return }
-        let targetQuestionCount = 5
+        let targetQuestionCount = 8
         let existingQuestionCount = (unit.quizQuestions ?? []).count
         if existingQuestionCount < targetQuestionCount {
             try await generateQuestions(review: false, count: targetQuestionCount - existingQuestionCount, kind: .multipleChoice, lesson: lesson, unitIndex: unitIndex)

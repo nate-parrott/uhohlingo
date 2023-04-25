@@ -1,11 +1,6 @@
 import Foundation
 
 struct ProgressState: Equatable, Codable {
-    struct UnitID: Equatable, Codable, Hashable {
-        var lessonId: String
-        var unitIndex: Int
-    }
-
     struct Answer: Equatable, Codable {
         var question: Question
         var grade: Double // 0..1

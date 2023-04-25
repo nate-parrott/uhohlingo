@@ -4,12 +4,15 @@ struct UnitView: View {
     var lessonId: String
     var unitIndex: Int
 
+    @StateObject private var unitViewState = UnitViewState()
+
     var body: some View {
         WithSnapshot(dataStore: LessonStore.shared, snapshot: { $0.unitViewSnapshot(lessonId: lessonId, unitIndex: unitIndex) }) { snapshot in
             if let snapshot {
                 _UnitView(lesson: snapshot.lesson, unit: snapshot.unit, unitIndex: unitIndex)
             }
         }
+        .environmentObject(unitViewState)
     }
 }
 
@@ -31,8 +34,8 @@ private struct _UnitView: View {
     var unit: Unit
     var unitIndex: Int
 
-    @State private var mode = UnitViewMode.info
     @State private var generationInProgress = false
+    @EnvironmentObject private var unitViewState: UnitViewState
 
     var body: some View {
         FunScreen {
@@ -50,8 +53,8 @@ private struct _UnitView: View {
     }
 
     @ViewBuilder private var modePicker: some View {
-        Picker("", selection: $mode) {
-            ForEach(UnitViewMode.allCases, id: \.self) {
+        Picker("", selection: modeBinding) {
+            ForEach(UnitViewMode.allViewableCases, id: \.self) {
                 Text($0.title)
                     .font(.funBody)
             }
@@ -65,22 +68,29 @@ private struct _UnitView: View {
         .opacity(generationInProgress ? 0.5 : 1)
     }
 
+    private var modeBinding: Binding<UnitViewMode> {
+        .init(get: { unitViewState.mode }, set: { unitViewState.mode = $0 })
+    }
+
     @ViewBuilder private var modeView: some View {
-        switch mode {
+        switch unitViewState.mode {
         case .info:
             InfoView(generationInProgress: generationInProgress, slides: unit.slides ?? [])
         case .review:
             ReviewView()
         case .quiz:
             QuizView(lesson: lesson, unit: unit, unitIndex: unitIndex)
+        case .chat:
+            ChatView(unitId: .init(lessonId: lesson.id, unitIndex: unitIndex))
         }
     }
 }
 
-private enum UnitViewMode: String, CaseIterable, Identifiable {
+enum UnitViewMode: String, CaseIterable, Identifiable {
     case info
     case review
     case quiz
+    case chat
 
     var id: UnitViewMode { self }
     var title: String {
@@ -91,7 +101,13 @@ private enum UnitViewMode: String, CaseIterable, Identifiable {
             return "Practice"
         case .quiz:
             return "Quiz"
+        case .chat:
+            return "Chat"
         }
+    }
+
+    static var allViewableCases: [UnitViewMode] {
+        [.info, .chat, .quiz]
     }
 }
 
@@ -99,4 +115,8 @@ struct ReviewView: View {
     var body: some View {
         Text("WIP")
     }
+}
+
+class UnitViewState: ObservableObject {
+    @Published var mode: UnitViewMode = .info
 }

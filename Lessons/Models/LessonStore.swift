@@ -1,5 +1,10 @@
 import Foundation
 
+struct UnitID: Equatable, Codable, Hashable {
+    var lessonId: String
+    var unitIndex: Int
+}
+
 struct Lesson: Equatable, Codable, Identifiable {
     var id: String
     var date: Date
@@ -49,5 +54,11 @@ extension LessonStore {
             lesson.units[unitIndex] = unit
             state.lessons[lessonId] = lesson
         }
+    }
+}
+
+extension LessonState {
+    func unit(forId id: UnitID) -> Unit? {
+        lessons[id.lessonId]?.units.get(id.unitIndex)
     }
 }

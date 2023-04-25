@@ -27,6 +27,7 @@ func llmModel() -> String {
 }
 
 extension OpenAIAPI {
-    static let shared = OpenAIAPI(apiKey: UserDefaults.standard.string(forKey: "apiKey") ?? "", orgId: UserDefaults.standard.string(forKey: "orgId")?.nilIfEmpty)
+    static var shared: OpenAIAPI {
+        OpenAIAPI(apiKey: UserDefaults.standard.string(forKey: "apiKey") ?? "", orgId: UserDefaults.standard.string(forKey: "orgId")?.nilIfEmpty)
+    }
 }
-

@@ -7,11 +7,12 @@ struct Prompt {
     var roleTokenCount: Int = 2
 
     // By default, priority increases with index
-    mutating func append(_ text: String, role: OpenAIAPI.Message.Role, priority: Double? = nil, canTruncateToLength: Int? = nil, canOmit: Bool = false, omissionMessage: String? = nil) {
+    mutating func append(_ text: String, role: OpenAIAPI.Message.Role, priority: Double? = nil, canTruncateToLength: Int? = nil, canOmit: Bool = false, omissionMessage: String? = nil, trim: Bool = true) {
         let priority = priority ?? Double(parts.count)
+        let textFinal = trim ? text.trimmed : text
         parts.append(Part(
             id: UUID().uuidString,
-            text: text,
+            text: textFinal,
             role: role,
             priority: priority, 
             canTruncateToLength: canTruncateToLength,
