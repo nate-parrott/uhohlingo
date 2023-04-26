@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct NewLesson: View {
-    var onDone: (Lesson?) -> Void
+struct NewCourse: View {
+    var onDone: (Course?) -> Void
 
     @State private var title = ""
     @State private var prompt = ""
@@ -22,7 +22,7 @@ struct NewLesson: View {
                     onDone(nil)
                 },
                 trailing: Button("Done") {
-                    onDone(Lesson(id: UUID().uuidString, date: Date(), title: title, prompt: prompt, units: []))
+                    onDone(.init(id: .assign(), date: Date(), title: title, extraInstructions: prompt, units: [:]))
                 }
             )
         }

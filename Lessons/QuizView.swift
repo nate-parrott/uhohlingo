@@ -1,108 +1,108 @@
 import SwiftUI
 
-struct QuizView: View {
-    var lesson: Lesson
-    var unit: Unit
-    var unitIndex: Int
-
-    @State private var generatingQuestions = false
-    @State private var answers = [ProgressState.Answer]()
-    @State private var showingAnswerForLastQuestion = false
-    @EnvironmentObject private var unitViewState: UnitViewState
-
-    var body: some View {
-        VStack {
-            if let currentItem {
-                ScrollView(.vertical) {
-                    VStack(spacing: 24) {
-                        questionView(question: currentItem.question, answer: currentItem.answer)
-
-                        nextButton
-                    }
-                    .padding(40)
-                    .id(currentItem.question)
-                    .transition(.slideLeftAndRight)
-                }
-            } else if generatingQuestions {
-                FunProgressView()
-            } else {
-                Text("No questions left")
-                    .font(.funHeader)
-                    .multilineTextAlignment(.center)
-            }
-        }
-        .animation(.spring(response: 0.3, dampingFraction: 0.95, blendDuration: 0.1), value: currentItem?.question)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .task {
-            generatingQuestions = true
-            do {
-                try await LessonStore.shared.ensureQuizGenerated(lessonId: lesson.id, unitIndex: unitIndex)
-            } catch {
-                print(error)
-            }
-            generatingQuestions = false
-        }
-        .onReceive(ProgressStore.shared.publisher.map { $0.quizResponses[unitID] ?? [] }) { answers in
-            self.answers = answers
-        }
-    }
-
-    private var unitID: UnitID {
-        .init(lessonId: lesson.id, unitIndex: unitIndex)
-    }
-
-    private struct CurrentItem: Equatable {
-        var question: Question
-        var answer: ProgressState.Answer?
-    }
-
-    private var currentItem: CurrentItem? {
-        let questions = (unit.quizQuestions ?? [])
-        let answeredQuestions = Set(answers.map(\.question))
-
-        if showingAnswerForLastQuestion, let lastAnswered = questions.last(where: { answeredQuestions.contains($0) }) {
-            let lastAnswer = answers.first(where: { $0.question == lastAnswered })!
-            return .init(question: lastAnswered, answer: lastAnswer)
-        }
-        // Show first unanswered:
-        if let firstUnanswered = questions.first(where: { !answeredQuestions.contains($0) }) {
-            return .init(question: firstUnanswered)
-        }
-        // No questions remaining
-        return nil
-    }
-
-    @ViewBuilder private func questionView(question: Question, answer: ProgressState.Answer?) -> some View {
-        if let mc = question.multipleChoice {
-            MultipleChoiceQuestionView(question: question, multipleChoice: mc, existingAnswer: answer) { answer in
-                showingAnswerForLastQuestion = true
-                ProgressStore.shared.model.recordAnswer(answer, for: UnitID(lessonId: lesson.id, unitIndex: unitIndex))
-            }
-        }
-    }
-
-    @ViewBuilder private var nextButton: some View {
-        HStack(spacing: 24) {
-            FunButtonOnTouchdown(action: { explain() }, options: .init()) {
-                Text("Explain it!")
-            }
-
-            FunButtonOnTouchdown(action: { showingAnswerForLastQuestion = false }, options: .init()) {
-                Text("Continue")
-            }
-        }
-        .opacity(showingAnswerForLastQuestion ? 1 : 0)
-        .accessibilityHidden(showingAnswerForLastQuestion ? false : true)
-    }
-
-    private func explain() {
-        guard let answer = currentItem?.answer else { return }
-        unitViewState.mode = .chat
-        Task {
-            try? await ChatStore.shared.send(message: .userWantsExplanation(answer), toThreadForUnit: .init(lessonId: lesson.id, unitIndex: unitIndex))
-        }
-    }
-}
+//struct QuizView: View {
+//    var course: Course
+//    var unit: Unit
+//    var unitIndex: Int
+//
+//    @State private var generatingQuestions = false
+//    @State private var answers = [ProgressState.Answer]()
+//    @State private var showingAnswerForLastQuestion = false
+//    @EnvironmentObject private var unitViewState: UnitViewState
+//
+//    var body: some View {
+//        VStack {
+//            if let currentItem {
+//                ScrollView(.vertical) {
+//                    VStack(spacing: 24) {
+//                        questionView(question: currentItem.question, answer: currentItem.answer)
+//
+//                        nextButton
+//                    }
+//                    .padding(40)
+//                    .id(currentItem.question)
+//                    .transition(.slideLeftAndRight)
+//                }
+//            } else if generatingQuestions {
+//                FunProgressView()
+//            } else {
+//                Text("No questions left")
+//                    .font(.funHeader)
+//                    .multilineTextAlignment(.center)
+//            }
+//        }
+//        .animation(.spring(response: 0.3, dampingFraction: 0.95, blendDuration: 0.1), value: currentItem?.question)
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        .task {
+//            generatingQuestions = true
+//            do {
+//                try await LessonStore.shared.ensureQuizGenerated(lessonId: lesson.id, unitIndex: unitIndex)
+//            } catch {
+//                print(error)
+//            }
+//            generatingQuestions = false
+//        }
+//        .onReceive(ProgressStore.shared.publisher.map { $0.quizResponses[unitID] ?? [] }) { answers in
+//            self.answers = answers
+//        }
+//    }
+//
+//    private var unitID: Unit.ID {
+//        .init(lessonId: lesson.id, unitIndex: unitIndex)
+//    }
+//
+//    private struct CurrentItem: Equatable {
+//        var question: Question
+//        var answer: ProgressState.Answer?
+//    }
+//
+//    private var currentItem: CurrentItem? {
+////        let questions = (unit.quizQuestions ?? [])
+////        let answeredQuestions = Set(answers.map(\.question))
+////
+////        if showingAnswerForLastQuestion, let lastAnswered = questions.last(where: { answeredQuestions.contains($0) }) {
+////            let lastAnswer = answers.first(where: { $0.question == lastAnswered })!
+////            return .init(question: lastAnswered, answer: lastAnswer)
+////        }
+////        // Show first unanswered:
+////        if let firstUnanswered = questions.first(where: { !answeredQuestions.contains($0) }) {
+////            return .init(question: firstUnanswered)
+////        }
+////        // No questions remaining
+//        return nil
+//    }
+//
+//    @ViewBuilder private func questionView(question: Question, answer: ProgressState.Answer?) -> some View {
+//        if let mc = question.multipleChoice {
+//            MultipleChoiceQuestionView(question: question, multipleChoice: mc, existingAnswer: answer) { answer in
+//                showingAnswerForLastQuestion = true
+////                ProgressStore.shared.model.recordAnswer(answer, for: UnitID(lessonId: lesson.id, unitIndex: unitIndex))
+//            }
+//        }
+//    }
+//
+//    @ViewBuilder private var nextButton: some View {
+//        HStack(spacing: 24) {
+//            FunButtonOnTouchdown(action: { explain() }, options: .init()) {
+//                Text("Explain it!")
+//            }
+//
+//            FunButtonOnTouchdown(action: { showingAnswerForLastQuestion = false }, options: .init()) {
+//                Text("Continue")
+//            }
+//        }
+//        .opacity(showingAnswerForLastQuestion ? 1 : 0)
+//        .accessibilityHidden(showingAnswerForLastQuestion ? false : true)
+//    }
+//
+//    private func explain() {
+//        guard let answer = currentItem?.answer else { return }
+//        unitViewState.mode = .chat
+//        Task {
+//            try? await ChatStore.shared.send(message: .userWantsExplanation(answer), toThreadForUnit: .init(lessonId: lesson.id, unitIndex: unitIndex))
+//        }
+//    }
+//}
 
 extension AnyTransition {
     static let slideLeftAndRight = AnyTransition.opacity.combined(with: .asymmetric(insertion: .offset(x: 50), removal: .offset(x: -50)))

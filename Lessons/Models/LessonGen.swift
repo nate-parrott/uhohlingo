@@ -6,9 +6,9 @@ enum GenerateUnitError: Error {
     case badOutput
 }
 
-extension LessonStore {
-    func generateUnits(forLessonWithId id: String) async throws {
-        guard let lesson = model.lessons[id] else {
+extension CourseStore {
+    func generateUnits(forCourseWithId id: Course.ID) async throws {
+        guard let course = model.courses[id] else {
             throw GenerateUnitError.noSuchLesson
         }
         var prompt = Prompt()
@@ -25,7 +25,7 @@ Provide lesson plans as valid JSON, encloses in code blocks (```). A lesson's JS
 type Lesson = Unit[]
 type Unit = {
     name: string
-    description: string
+    topics: [String] // 2-5 topics that this unit will cover
 }
 ```
 ```
@@ -35,15 +35,15 @@ type Unit = {
 For example, given a topic "Basic Spanish", expected output would consist of:
 ```
 [
-    { "name": "Greetings", "description": "Hello, goodbye and more" },
-    { "name": "Names", "description": "Asking for and sharing people's names" },
-    { "name": "Numbers", "description": "Numbers and counting." },
+    { "name": "Greetings", "topics": ["Saying hello", "Saying goodbye", "Formal greetings", "Informal greetings" },
+    { "name": "Names", "topics": ["Sharing your name", "Asking for someone's name"] },
+    { "name": "Numbers", "topics": ["Counting", "Money"] },
     ...etc
 ]
 """.trimmed, role: .system)
 
-        var userInput = "Topic: \(lesson.title)"
-        if let prompt = lesson.prompt.nilIfEmpty {
+        var userInput = "Topic: \(course.title)"
+        if let prompt = course.extraInstructions.nilIfEmpty {
             userInput += " (Extra instructions: \(prompt))"
         }
         prompt.append(userInput, role: .user)
@@ -56,14 +56,19 @@ For example, given a topic "Basic Spanish", expected output would consist of:
                 return
             }
             
-            if let units = partial.content.parsedAsUnits {
-                LessonStore.shared.model.lessons[lesson.id]?.units = units
+            if let units = partial.content.parsedAsUnits(courseId: id) {
+                CourseStore.shared.modify { state in
+                    for unit in units {
+                        state.courses[course.id]?.units[unit.id] = unit
+                    }
+                }
+//                CourseStore.shared.model.courses[course.id]?.units = Array(units.values)
             }
 
             lastResponse = partial.content
         }
 
-        if LessonStore.shared.model.lessons[lesson.id]!.units.count < 1 {
+        if CourseStore.shared.model.courses[course.id]!.units.count < 1 {
             print("Bad output: \(lastResponse)")
             throw GenerateUnitError.badOutput
         }
@@ -71,7 +76,12 @@ For example, given a topic "Basic Spanish", expected output would consist of:
 }
 
 private extension String {
-    var parsedAsUnits: [Unit]? {
+    func parsedAsUnits(courseId: Course.ID) -> [Unit]? {
+        struct PartialUnit: Codable {
+            var name: String
+            var topics: [String]
+        }
+
         let parts = components(separatedBy: "```")
         guard parts.count >= 2 else { return nil }
         let code = parts[1]
@@ -79,8 +89,11 @@ private extension String {
         for appendClosingBracket in [false, true] {
             let fullStr = appendClosingBracket ? code + "]" : code
             let data = fullStr.data(using: .utf8)!
-            if let parsed = try? JSONDecoder().decode([Unit].self, from: data) {
-                return parsed
+            if let parsed = try? JSONDecoder().decode([PartialUnit].self, from: data) {
+                return parsed.enumerated().map { pair in
+                    let (index, unit) = pair
+                    return .init(id: .init(course: courseId, unit: "\(index)"), name: unit.name, topics: unit.topics, index: index)
+                }
             }
         }
 

@@ -12,7 +12,7 @@ struct LessonsApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                LessonsList()
+                CourseList()
             }
             .colorScheme(.light)
         }

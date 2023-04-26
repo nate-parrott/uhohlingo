@@ -23,78 +23,78 @@ import OpenAIStreamingCompletions
 //}
 
 extension ChatStore {
-    func send(message: ChatMessage, toThreadForUnit unitID: UnitID) async throws {
-        let lessonState = await LessonStore.shared.getModel()
-        guard let lesson = lessonState.lessons[unitID.lessonId],
-              let unit = lessonState.unit(forId: unitID)
-        else { return }
-
-        // First we'll append the user message, and then generate a response
-        modify { state in
-            state.updateThread(unitID: unitID) { thread in
-                thread.messages.append(message)
-                thread.typing = true
-            }
-        }
-
-        defer {
-            modify { state in
-                state.updateThread(unitID: unitID) { thread in
-                    thread.typing = false
-                }
-            }
-        }
-
-        var prompt = Prompt()
-
-        var intro = """
-You are a helpful, patient and insightful teacher who is helping the user with an online course.
-
-The course is titled '\(lesson.title)'.
-""".trimmed
-        if let instr = lesson.prompt.nilIfEmpty {
-            intro += " Additional instructions about the course: '\(instr)'"
-        }
-        prompt.append(intro, role: .system, priority: 100)
-
-        let unitInfo = """
-This conversation concerns the unit '\(unit.name)', which is described as '\(unit.description)'.
-"""
-        prompt.append(unitInfo, role: .system, priority: 90)
-
-        let unitTitlesUpToAndIncludingThis = lesson.units.prefix(through: unitID.unitIndex).map(\.name)
-        let recap = """
-This is Unit #\(unitID.unitIndex + 1). So far, the course has covered these topics:
-\(unitTitlesUpToAndIncludingThis.joined(separator: ", "))
-"""
-        prompt.append(recap, role: .system, priority: 80, canTruncateToLength: 100)
-
-        if let slides = unit.concatSlidesMarkdown {
-            prompt.append("Here is a sample of the content of the unit, which the user will be asking about:\n\(slides)", role: .system, priority: 50, canTruncateToLength: 400)
-        }
-        prompt.append("Conversation:", role: .system, priority: 100)
-
-        let previousMessages = await getModel().threads[unitID]?.messages ?? []
-        for prevMessage in previousMessages.reversed().enumerated().reversed() {
-            let (distFromEnd, message) = prevMessage
-            let priority: Double = distFromEnd <= 2 ? 85 : 40 - Double(distFromEnd) // newer messages have lower priorities
-            prompt.appendMessage(message, priority: priority, canOmit: distFromEnd > 2, canTruncate: 200)
-        }
-
-        let packed = prompt.packedPrompt(tokenCount: 2400)
-        print("Prompt:\n\(packed.asConversationString)")
-
-        // Now, use the prompt to generate a completion:
-        for await partial in try OpenAIAPI.shared.completeChatStreaming(.init(messages: packed)) {
-            modify { state in
-                state.updateThread(unitID: unitID) { thread in
-                    if let lastMsg = thread.messages.last, lastMsg.isFromAssistant {
-                        _ = thread.messages.removeLast()
-                    }
-                    thread.messages.append(.assistantSaid(partial.content))
-                }
-            }
-        }
+    func send(message: ChatMessage, toThreadForUnit unitID: Unit.ID) async throws {
+//        let lessonState = await LessonStore.shared.getModel()
+//        guard let lesson = lessonState.lessons[unitID.lessonId],
+//              let unit = lessonState.unit(forId: unitID)
+//        else { return }
+//
+//        // First we'll append the user message, and then generate a response
+//        modify { state in
+//            state.updateThread(unitID: unitID) { thread in
+//                thread.messages.append(message)
+//                thread.typing = true
+//            }
+//        }
+//
+//        defer {
+//            modify { state in
+//                state.updateThread(unitID: unitID) { thread in
+//                    thread.typing = false
+//                }
+//            }
+//        }
+//
+//        var prompt = Prompt()
+//
+//        var intro = """
+//You are a helpful, patient and insightful teacher who is helping the user with an online course.
+//
+//The course is titled '\(lesson.title)'.
+//""".trimmed
+//        if let instr = lesson.prompt.nilIfEmpty {
+//            intro += " Additional instructions about the course: '\(instr)'"
+//        }
+//        prompt.append(intro, role: .system, priority: 100)
+//
+//        let unitInfo = """
+//This conversation concerns the unit '\(unit.name)', which is described as '\(unit.description)'.
+//"""
+//        prompt.append(unitInfo, role: .system, priority: 90)
+//
+//        let unitTitlesUpToAndIncludingThis = lesson.units.prefix(through: unitID.unitIndex).map(\.name)
+//        let recap = """
+//This is Unit #\(unitID.unitIndex + 1). So far, the course has covered these topics:
+//\(unitTitlesUpToAndIncludingThis.joined(separator: ", "))
+//"""
+//        prompt.append(recap, role: .system, priority: 80, canTruncateToLength: 100)
+//
+//        if let slides = unit.concatSlidesMarkdown {
+//            prompt.append("Here is a sample of the content of the unit, which the user will be asking about:\n\(slides)", role: .system, priority: 50, canTruncateToLength: 400)
+//        }
+//        prompt.append("Conversation:", role: .system, priority: 100)
+//
+//        let previousMessages = await getModel().threads[unitID]?.messages ?? []
+//        for prevMessage in previousMessages.reversed().enumerated().reversed() {
+//            let (distFromEnd, message) = prevMessage
+//            let priority: Double = distFromEnd <= 2 ? 85 : 40 - Double(distFromEnd) // newer messages have lower priorities
+//            prompt.appendMessage(message, priority: priority, canOmit: distFromEnd > 2, canTruncate: 200)
+//        }
+//
+//        let packed = prompt.packedPrompt(tokenCount: 2400)
+//        print("Prompt:\n\(packed.asConversationString)")
+//
+//        // Now, use the prompt to generate a completion:
+//        for await partial in try OpenAIAPI.shared.completeChatStreaming(.init(messages: packed)) {
+//            modify { state in
+//                state.updateThread(unitID: unitID) { thread in
+//                    if let lastMsg = thread.messages.last, lastMsg.isFromAssistant {
+//                        _ = thread.messages.removeLast()
+//                    }
+//                    thread.messages.append(.assistantSaid(partial.content))
+//                }
+//            }
+//        }
     }
 }
 
@@ -128,13 +128,13 @@ When the user asks, please restate the question and explain the correct answer. 
     }
 }
 
-extension Unit {
-    var concatSlidesMarkdown: String? {
-        guard let slides else { return nil }
-        if slides.isEmpty { return nil }
-        return slides.map(\.markdown).joined(separator: "\n\n")
-    }
-}
+//extension Unit {
+//    var concatSlidesMarkdown: String? {
+//        guard let slides else { return nil }
+//        if slides.isEmpty { return nil }
+//        return slides.map(\.markdown).joined(separator: "\n\n")
+//    }
+//}
 
 extension ChatMessage {
     var isFromAssistant: Bool {

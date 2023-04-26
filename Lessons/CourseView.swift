@@ -1,25 +1,25 @@
 import SwiftUI
 
-struct LessonView: View {
-    var id: String
+struct CourseView: View {
+    var id: Course.ID
 
     var body: some View {
-        WithSnapshot(dataStore: LessonStore.shared, snapshot: { $0.lessons[id] }) { lesson in
-            if let lesson {
-                _LessonView(lesson: lesson)
+        WithSnapshot(dataStore: CourseStore.shared, snapshot: { $0.courses[id] }) { course in
+            if let course {
+                _CourseView(course: course)
             }
         }
     }
 }
 
-private struct _LessonView: View {
-    var lesson: Lesson
+private struct _CourseView: View {
+    var course: Course
     @State private var generationError: Error?
     @State private var generationInProgress = false
 
     var body: some View {
         FunScreen {
-            FunHeader(title: lesson.title, leadingButton: {
+            FunHeader(title: course.title, leadingButton: {
                 BackButton()
             }, trailingButton: {
                 EmptyView()
@@ -27,8 +27,8 @@ private struct _LessonView: View {
             list
         }
         .task {
-            if lesson.units.count == 0 {
-                await generateLesson()
+            if course.units.count == 0 {
+                await generateCourse()
             }
         }
     }
@@ -36,8 +36,8 @@ private struct _LessonView: View {
     @ViewBuilder private var list: some View {
         List {
             Group {
-                ForEach(lesson.units.enumeratedIdentifiable()) { pair in
-                    UnitCell(lesson: lesson, unit: pair.value, index: pair.index)
+                ForEach(course.sortedUnits) { unit in
+                    UnitCell(unit: unit)
                 }
                 if generationInProgress {
                     FunProgressView()
@@ -49,15 +49,15 @@ private struct _LessonView: View {
             .asFunListCell
         }
         .asFunList
-        .onChange(of: lesson.units.count) { _ in
+        .onChange(of: course.units.count) { _ in
             UISelectionFeedbackGenerator().selectionChanged()
         }
     }
 
-    private func generateLesson() async {
+    private func generateCourse() async {
         generationInProgress = true
         do {
-            try await LessonStore.shared.generateUnits(forLessonWithId: lesson.id)
+            try await CourseStore.shared.generateUnits(forCourseWithId: course.id)
         } catch {
             print(error)
 
@@ -68,9 +68,7 @@ private struct _LessonView: View {
 }
 
 private struct UnitCell: View {
-    var lesson: Lesson
     var unit: Unit
-    var index: Int
 
     var body: some View {
         NavigationLink(destination: destination) {
@@ -88,6 +86,19 @@ private struct UnitCell: View {
     }
 
     @ViewBuilder private var destination: some View {
-        UnitView(lessonId: lesson.id, unitIndex: index)
+        UnitView(id: unit.id)
+    }
+}
+
+extension Unit {
+    var description: String {
+        let parts = topics.prefix(3)
+        return parts.joined(separator: ", ") + "…"
+    }
+}
+
+extension Course {
+    var sortedUnits: [Unit] {
+        units.values.sorted(by: { $0.index < $1.index })
     }
 }

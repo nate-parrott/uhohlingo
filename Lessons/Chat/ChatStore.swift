@@ -13,11 +13,11 @@ struct ChatState: Equatable, Codable {
         var typing: Bool
     }
 
-    var threads = [UnitID: Thread]()
+    var threads = [Unit.ID: Thread]()
 }
 
 extension ChatState {
-    mutating func updateThread(unitID: UnitID, modifier: (inout Thread) -> Void) {
+    mutating func updateThread(unitID: Unit.ID, modifier: (inout Thread) -> Void) {
         var thread = threads[unitID] ?? .init(messages: [], typing: false)
         modifier(&thread)
         threads[unitID] = thread

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ChatView: View {
-    var unitId: UnitID
+    var unitId: Unit.ID
 
     @State private var messages: [ChatMessage] = []
     @State private var typing = false
