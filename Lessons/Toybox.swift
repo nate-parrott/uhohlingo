@@ -9,8 +9,6 @@ struct FunProgressView: View {
 
     var body: some View {
         AnimatedEllipsis()
-        // TODO: Better
-//        ProgressView()
     }
 }
 

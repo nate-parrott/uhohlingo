@@ -9,3 +9,9 @@ extension Array {
         }
     }
 }
+
+extension Sequence where Element: Hashable {
+    var asSet: Set<Element> {
+        Set(self)
+    }
+}

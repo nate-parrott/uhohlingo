@@ -92,7 +92,7 @@ private extension String {
             if let parsed = try? JSONDecoder().decode([PartialUnit].self, from: data) {
                 return parsed.enumerated().map { pair in
                     let (index, unit) = pair
-                    return .init(id: .init(course: courseId, unit: "\(index)"), name: unit.name, topics: unit.topics, index: index)
+                    return .init(id: .init(course: courseId, unit: "\(index)"), name: unit.name, topics: unit.topics, index: index, slideGroups: .init())
                 }
             }
         }

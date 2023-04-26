@@ -43,12 +43,24 @@ private struct _UnitView: View {
     var body: some View {
         FunScreen {
             FunHeader(title: unit.name, leadingButton: { BackButton() }, trailingButton: { EmptyView() })
-            Color.red
+            ScrollView {
+                LazyVStack(alignment: .leading) {
+                    ForEach(unit.slideGroups.flatMap(\.slides)) { slide in
+                        SlidePreview(slide: slide)
+                    }
+                }
+            }
+            .overlay(alignment: .bottom) {
+                if generationInProgress {
+                    LoaderFeather()
+                }
+            }
         }
         .task {
+            if generationInProgress { return }
             generationInProgress = true
             // TODO: Handle error
-//            try? await LessonStore.shared.generateUnitContentIfNeeded(lesson: lesson, unitIndex: unitIndex)
+            try? await CourseStore.shared.generateSlidesIfNeeded(unitID: unit.id)
             generationInProgress = false
         }
     }
@@ -69,4 +81,19 @@ private struct _UnitView: View {
 //        .opacity(generationInProgress ? 0.5 : 1)
 //    }
 
+}
+
+private struct SlidePreview: View {
+    var slide: Slide
+
+    var body: some View {
+        Group {
+            switch slide.content {
+            case .info(let info): Text(info.markdown).lineLimit(nil)
+            case .question(let q): Text("Question: \(q.multipleChoice?.question ?? "?")")
+            case .title(let c): Text(c.title).font(.funHeader)
+            }
+        }
+        .multilineTextAlignment(.leading)
+    }
 }

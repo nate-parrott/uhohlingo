@@ -32,12 +32,12 @@
 		5FB040BD29D0EFE3008C24B1 /* CourseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040BC29D0EFE3008C24B1 /* CourseStore.swift */; };
 		5FB040BF29D0F26F008C24B1 /* NewCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040BE29D0F26F008C24B1 /* NewCourse.swift */; };
 		5FB040C129D0F3AC008C24B1 /* CourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040C029D0F3AC008C24B1 /* CourseView.swift */; };
-		5FB040C329D0F402008C24B1 /* LessonGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040C229D0F402008C24B1 /* LessonGen.swift */; };
+		5FB040C329D0F402008C24B1 /* CourseGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040C229D0F402008C24B1 /* CourseGen.swift */; };
 		5FB040C729D0F465008C24B1 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040C629D0F465008C24B1 /* Tokens.swift */; };
 		5FB040C929D0F46D008C24B1 /* ParseConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040C829D0F46D008C24B1 /* ParseConversation.swift */; };
 		5FB040CB29D0F470008C24B1 /* PromptPacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040CA29D0F470008C24B1 /* PromptPacker.swift */; };
 		5FB040D029D0FC67008C24B1 /* UnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040CF29D0FC67008C24B1 /* UnitView.swift */; };
-		5FB040D229D0FECA008C24B1 /* UnitGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040D129D0FECA008C24B1 /* UnitGen.swift */; };
+		5FB040D229D0FECA008C24B1 /* SlideGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040D129D0FECA008C24B1 /* SlideGen.swift */; };
 		5FF4168529E378CE007CCB5A /* ChatStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF4168429E378CE007CCB5A /* ChatStore.swift */; };
 		5FF4168729E37A5D007CCB5A /* ScrollableCenteredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF4168629E37A5D007CCB5A /* ScrollableCenteredView.swift */; };
 		5FF4168929E37C18007CCB5A /* ChatGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF4168829E37C18007CCB5A /* ChatGen.swift */; };
@@ -71,13 +71,13 @@
 		5FB040BC29D0EFE3008C24B1 /* CourseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseStore.swift; sourceTree = "<group>"; };
 		5FB040BE29D0F26F008C24B1 /* NewCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCourse.swift; sourceTree = "<group>"; };
 		5FB040C029D0F3AC008C24B1 /* CourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseView.swift; sourceTree = "<group>"; };
-		5FB040C229D0F402008C24B1 /* LessonGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonGen.swift; sourceTree = "<group>"; };
+		5FB040C229D0F402008C24B1 /* CourseGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseGen.swift; sourceTree = "<group>"; };
 		5FB040C629D0F465008C24B1 /* Tokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		5FB040C829D0F46D008C24B1 /* ParseConversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConversation.swift; sourceTree = "<group>"; };
 		5FB040CA29D0F470008C24B1 /* PromptPacker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptPacker.swift; sourceTree = "<group>"; };
 		5FB040CE29D0F9E8008C24B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5FB040CF29D0FC67008C24B1 /* UnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitView.swift; sourceTree = "<group>"; };
-		5FB040D129D0FECA008C24B1 /* UnitGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitGen.swift; sourceTree = "<group>"; };
+		5FB040D129D0FECA008C24B1 /* SlideGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideGen.swift; sourceTree = "<group>"; };
 		5FF4168429E378CE007CCB5A /* ChatStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatStore.swift; sourceTree = "<group>"; };
 		5FF4168629E37A5D007CCB5A /* ScrollableCenteredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableCenteredView.swift; sourceTree = "<group>"; };
 		5FF4168829E37C18007CCB5A /* ChatGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGen.swift; sourceTree = "<group>"; };
@@ -188,8 +188,8 @@
 			children = (
 				5FB040BC29D0EFE3008C24B1 /* CourseStore.swift */,
 				5F69681929D3CA61005ECEEB /* ProgressStore.swift */,
-				5FB040C229D0F402008C24B1 /* LessonGen.swift */,
-				5FB040D129D0FECA008C24B1 /* UnitGen.swift */,
+				5FB040C229D0F402008C24B1 /* CourseGen.swift */,
+				5FB040D129D0FECA008C24B1 /* SlideGen.swift */,
 				5F69681529D11885005ECEEB /* QuestionGen.swift */,
 			);
 			path = Models;
@@ -295,7 +295,7 @@
 				5FB040C129D0F3AC008C24B1 /* CourseView.swift in Sources */,
 				5FB040BF29D0F26F008C24B1 /* NewCourse.swift in Sources */,
 				5F69680D29D10ADD005ECEEB /* SlidesView.swift in Sources */,
-				5FB040C329D0F402008C24B1 /* LessonGen.swift in Sources */,
+				5FB040C329D0F402008C24B1 /* CourseGen.swift in Sources */,
 				5FF4169029E3B14E007CCB5A /* TypingView.swift in Sources */,
 				5FF4168929E37C18007CCB5A /* ChatGen.swift in Sources */,
 				5FB040D029D0FC67008C24B1 /* UnitView.swift in Sources */,
@@ -311,7 +311,7 @@
 				5FB040A529D0EF52008C24B1 /* LessonsApp.swift in Sources */,
 				5FF4168729E37A5D007CCB5A /* ScrollableCenteredView.swift in Sources */,
 				5F69681129D10B17005ECEEB /* WebContent.swift in Sources */,
-				5FB040D229D0FECA008C24B1 /* UnitGen.swift in Sources */,
+				5FB040D229D0FECA008C24B1 /* SlideGen.swift in Sources */,
 				5F69681A29D3CA61005ECEEB /* ProgressStore.swift in Sources */,
 				5FF4168E29E39686007CCB5A /* Animations.swift in Sources */,
 				5F69681629D11885005ECEEB /* QuestionGen.swift in Sources */,

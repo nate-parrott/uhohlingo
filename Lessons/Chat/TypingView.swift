@@ -32,7 +32,10 @@ struct AnimatedEllipsis: View {
             }
         }
         .onAppear {
-            appeared = true
+            appeared = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                appeared = true
+            }
         }
     }
 }
