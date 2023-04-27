@@ -9,7 +9,7 @@ struct Prompt {
     // By default, priority increases with index
     mutating func append(_ text: String, role: OpenAIAPI.Message.Role, priority: Double? = nil, canTruncateToLength: Int? = nil, canOmit: Bool = false, omissionMessage: String? = nil, trim: Bool = true) {
         let priority = priority ?? Double(parts.count)
-        let textFinal = trim ? text.trimmed : text
+        let textFinal = trim ? text.trimmed.dropCommentedLines : text
         parts.append(Part(
             id: UUID().uuidString,
             text: textFinal,
@@ -148,3 +148,11 @@ struct Prompt {
     }
 }
 
+extension String {
+    var dropCommentedLines: String {
+        let parts = components(separatedBy: .newlines)
+        return parts.filter { line in
+            return !line.trimmed.hasPrefix("%%")
+        }.joined(separator: "\n")
+    }
+}
