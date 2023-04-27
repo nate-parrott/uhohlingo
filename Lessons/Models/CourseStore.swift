@@ -55,6 +55,7 @@ struct TitleSlideContent: Equatable, Codable {
 
 struct InfoSlideContent: Equatable, Codable {
     var markdown: String
+    var generationInProgress: Bool
 }
 
 struct Question: Equatable, Codable, Hashable, Identifiable {

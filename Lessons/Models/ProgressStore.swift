@@ -13,11 +13,3 @@ struct ProgressState: Equatable, Codable {
 class ProgressStore: DataStore<ProgressState> {
     static let shared = ProgressStore(persistenceKey: "Progress2", defaultModel: .init())
 }
-
-//extension ProgressState {
-//    mutating func recordAnswer(_ answer: Answer, for unit: UnitID) {
-//        var answers = quizResponses[unit] ?? []
-//        answers.append(answer)
-//        quizResponses[unit] = answers
-//    }
-//}

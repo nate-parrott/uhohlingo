@@ -64,6 +64,20 @@ struct FunHeader<B1: View, B2: View>: View {
     @ViewBuilder var trailingButton: () -> B2
 
     var body: some View {
+        FunHeaderBase(center: {
+            Text(title)
+                .font(.funHeader)
+                .padding(.vertical)
+        }, leadingButton: leadingButton, trailingButton: trailingButton)
+    }
+}
+
+struct FunHeaderBase<B1: View, B2: View, C: View>: View {
+    @ViewBuilder var center: () -> C
+    @ViewBuilder var leadingButton: () -> B1
+    @ViewBuilder var trailingButton: () -> B2
+
+    var body: some View {
         HStack {
             ZStack(alignment: .leading) {
                 leadingButton()
@@ -72,9 +86,7 @@ struct FunHeader<B1: View, B2: View>: View {
 
             Spacer()
 
-            Text(title)
-                .font(.funHeader)
-                .padding(.vertical)
+            center()
 
             Spacer()
 
@@ -88,6 +100,7 @@ struct FunHeader<B1: View, B2: View>: View {
         .background(Color.white.opacity(0.3))
     }
 }
+
 
 struct FunHeaderButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled
@@ -259,5 +272,19 @@ struct Toybox_Previews: PreviewProvider {
             }
             .padding(30)
         }
+    }
+}
+
+struct LoaderFeather: View {
+    var body: some View {
+        ZStack {
+            LinearGradient(colors: [Color.yellow.opacity(0), Color.yellow], startPoint: .top, endPoint: .init(x: 0.5, y: 0.7))
+                .edgesIgnoringSafeArea(.all)
+            FunProgressView()
+                .padding()
+                .offset(y: 50)
+        }
+        .frame(height: 150)
+        .allowsHitTesting(false)
     }
 }

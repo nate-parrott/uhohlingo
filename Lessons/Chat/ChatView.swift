@@ -36,6 +36,7 @@ struct ChatView: View {
         }
         .onReceive(ChatStore.shared.publisher.map { $0.threads[unitId]?.messages ?? [] }, perform: { self.messages = $0 })
         .onReceive(ChatStore.shared.publisher.map { $0.threads[unitId]?.typing ?? false }, perform: { self.typing = $0 })
+        .background(Color.yellow)
     }
 
     private var scrollToId: AnyHashable? {

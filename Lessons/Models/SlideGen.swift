@@ -97,9 +97,15 @@ extension CourseStore {
         SLIDE FOR \(course.title) > \(unit.name) > (\(topic):
         """, role: .system, priority: 200)
 
+                var lastContent: InfoSlideContent?
                 for await partial in try OpenAIAPI.shared.completeChatStreaming(.init(messages: prompt.packedPrompt(tokenCount: 2000), model: llmModel(), max_tokens: 2000, temperature: 0.1)) {
                     if Task.isCancelled { return }
-                    continuation.yield(InfoSlideContent(markdown: partial.content.trimmed))
+                    let content = InfoSlideContent(markdown: partial.content.trimmed, generationInProgress: true)
+                    lastContent = content
+                    continuation.yield(content)
+                }
+                if let lastContent {
+                    continuation.yield(.init(markdown: lastContent.markdown, generationInProgress: false))
                 }
                 continuation.finish()
             }

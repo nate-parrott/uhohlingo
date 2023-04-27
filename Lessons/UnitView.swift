@@ -16,8 +16,8 @@ struct UnitView: View {
 }
 
 class UnitViewState: ObservableObject {
-    // TODO
-    var showingChat = false
+    @Published var showingChat = false
+    @Published var currentSlide: Slide.ID?
 }
 
 private struct UnitViewSnapshot: Equatable {
@@ -38,22 +38,14 @@ private struct _UnitView: View {
     var unit: Unit
 
     @State private var generationInProgress = false
-//    @EnvironmentObject private var unitViewState: UnitViewState
+    @EnvironmentObject private var unitViewState: UnitViewState
 
     var body: some View {
         FunScreen {
-            FunHeader(title: unit.name, leadingButton: { BackButton() }, trailingButton: { EmptyView() })
-            ScrollView {
-                LazyVStack(alignment: .leading) {
-                    ForEach(unit.slideGroups.flatMap(\.slides)) { slide in
-                        SlidePreview(slide: slide)
-                    }
-                }
-            }
-            .overlay(alignment: .bottom) {
-                if generationInProgress {
-                    LoaderFeather()
-                }
+            FunHeaderBase(center: { slider }, leadingButton: { BackButton() }, trailingButton: { chatToggleButton })
+            ZStack {
+                content
+                chat.opacity(unitViewState.showingChat ? 1 : 0)
             }
         }
         .task {
@@ -65,22 +57,74 @@ private struct _UnitView: View {
         }
     }
 
-//    @ViewBuilder private var modePicker: some View {
-//        Picker("", selection: modeBinding) {
-//            ForEach(UnitViewMode.allViewableCases, id: \.self) {
-//                Text($0.title)
-//                    .font(.funBody)
+    @ViewBuilder private var slider: some View {
+        Slider(value: .constant(0))
+    }
+
+    @ViewBuilder private var chatToggleButton: some View {
+        Button(action: { unitViewState.showingChat = !unitViewState.showingChat }) {
+            Image(systemName: unitViewState.showingChat ? "questionmark.bubble.fill" : "questionmark.bubble")
+        }
+    }
+
+    @ViewBuilder private var content: some View {
+        VStack(spacing: 0) {
+            if let curSlide {
+                switch curSlide.content {
+                case .info(let info): InfoSlide(info: info)
+                case .question(let q): QuestionSlide(question: q)
+                case .title(let t): TitleSlide(titleSlide: t)
+                }
+            } else {
+                Spacer()
+            }
+            Divider()
+            Button(action: { unitViewState.currentSlide = nextSlideId }) {
+                if generationInProgress && nextSlideId == nil {
+                    FunProgressView()
+                } else {
+                    Text("Next")
+                }
+            }
+            .disabled(nextSlideId == nil)
+            .buttonStyle(FunButtonStyle())
+            .padding()
+        }
+//        ScrollView {
+//            LazyVStack(alignment: .leading) {
+//                ForEach(unit.slideGroups.flatMap(\.slides)) { slide in
+//                    SlidePreview(slide: slide)
+//                }
 //            }
 //        }
-//        .blendMode(.luminosity)
-//        .pickerStyle(SegmentedPickerStyle())
-//        .padding()
-//        .padding(.horizontal, 6)
-//        .background(Color.white.opacity(0.3), ignoresSafeAreaEdges: .all)
-//        .disabled(generationInProgress)
-//        .opacity(generationInProgress ? 0.5 : 1)
-//    }
+//        .overlay(alignment: .bottom) {
+//            if generationInProgress {
+//                LoaderFeather()
+//            }
+//        }
+    }
 
+    @ViewBuilder private var chat: some View {
+        ChatView(unitId: unit.id)
+    }
+
+    private var curSlide: Slide? {
+        let allSlides = unit.slideGroups.flatMap(\.slides)
+        if let id = unitViewState.currentSlide, let slide = allSlides.first(where: { $0.id == id }) {
+            return slide
+        }
+        return allSlides.first
+    }
+
+    private var nextSlideId: Slide.ID? {
+        let allSlides = unit.slideGroups.flatMap(\.slides)
+        if let curSlide,
+            let curIdx = allSlides.firstIndex(where: { $0.id == curSlide.id }),
+            curIdx + 1 < allSlides.count {
+            return allSlides[curIdx + 1].id
+        }
+        return nil
+    }
 }
 
 private struct SlidePreview: View {

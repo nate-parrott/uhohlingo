@@ -1,8 +1,7 @@
 import SwiftUI
 import Ink
 
-struct InfoView: View {
-    var generationInProgress: Bool
+struct InfoSlide: View {
     var info: InfoSlideContent
 
     @StateObject private var wc = WebContent(transparent: true)
@@ -11,7 +10,7 @@ struct InfoView: View {
     var body: some View {
         WebView(content: wc)
             .overlay(alignment: .bottom) {
-                if generationInProgress {
+                if info.generationInProgress {
                     LoaderFeather()
                 }
             }
@@ -27,20 +26,6 @@ struct InfoView: View {
                     _ = try? await wc.webview.runAsync(js: "document.body.innerHTML = \(html.encodedAsJSONString)")
                 }
             })
-    }
-}
-
-struct LoaderFeather: View {
-    var body: some View {
-        ZStack {
-            LinearGradient(colors: [Color.yellow.opacity(0), Color.yellow], startPoint: .top, endPoint: .init(x: 0.5, y: 0.7))
-                .edgesIgnoringSafeArea(.all)
-            FunProgressView()
-                .padding()
-                .offset(y: 50)
-        }
-        .frame(height: 150)
-        .allowsHitTesting(false)
     }
 }
 
@@ -60,12 +45,7 @@ body {
     font-size: 1.2em;
     line-height: 1.5;
     padding: 1em;
-}
-hr:last-child { display: none; }
-hr {
-    margin-top: 1.5em;
-    margin-bottom: 1em;
-    border: 1px solid black;
+    margin-bottom: 4em;
 }
 </style>
 </head>

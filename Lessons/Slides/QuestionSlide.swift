@@ -1,5 +1,25 @@
 import SwiftUI
 
+struct QuestionSlide: View {
+    var question: Question
+
+    @State private var answer: ProgressState.Answer? // TODO
+
+    var body: some View {
+        ScrollView(.vertical, showsIndicators: false) {
+            Group {
+                if let mc = question.multipleChoice {
+                    MultipleChoiceQuestionView(question: question, multipleChoice: mc, existingAnswer: answer) { answer in
+                        ProgressStore.shared.model.quizResponses[answer.question.id] = answer
+                    }
+                }
+            }
+            .padding()
+        }
+        .onReceive(ProgressStore.shared.publisher.map { $0.quizResponses[question.id] }, perform: { self.answer = $0 })
+    }
+}
+
 //struct QuizView: View {
 //    var course: Course
 //    var unit: Unit

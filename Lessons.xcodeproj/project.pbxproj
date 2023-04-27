@@ -8,14 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		5F09740629F8A1F10036E8A1 /* TypedID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09740529F8A1F10036E8A1 /* TypedID.swift */; };
+		5F31F2F929FA08AB00B79E7C /* TitleSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31F2F829FA08AB00B79E7C /* TitleSlide.swift */; };
 		5F69680629D1005D005ECEEB /* ArrayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69680529D1005D005ECEEB /* ArrayUtils.swift */; };
 		5F69680929D10A59005ECEEB /* Ink in Frameworks */ = {isa = PBXBuildFile; productRef = 5F69680829D10A59005ECEEB /* Ink */; };
-		5F69680D29D10ADD005ECEEB /* SlidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69680C29D10ADD005ECEEB /* SlidesView.swift */; };
+		5F69680D29D10ADD005ECEEB /* InfoSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69680C29D10ADD005ECEEB /* InfoSlide.swift */; };
 		5F69681129D10B17005ECEEB /* WebContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69680F29D10B17005ECEEB /* WebContent.swift */; };
 		5F69681229D10B17005ECEEB /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681029D10B17005ECEEB /* WebView.swift */; };
 		5F69681429D10E4E005ECEEB /* WebView+JS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681329D10E4E005ECEEB /* WebView+JS.swift */; };
 		5F69681629D11885005ECEEB /* QuestionGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681529D11885005ECEEB /* QuestionGen.swift */; };
-		5F69681829D3CA50005ECEEB /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681729D3CA4F005ECEEB /* QuizView.swift */; };
+		5F69681829D3CA50005ECEEB /* QuestionSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681729D3CA4F005ECEEB /* QuestionSlide.swift */; };
 		5F69681A29D3CA61005ECEEB /* ProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681929D3CA61005ECEEB /* ProgressStore.swift */; };
 		5F69681C29D3ECC2005ECEEB /* SeededRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681B29D3ECC2005ECEEB /* SeededRandom.swift */; };
 		5F69681E29D4C3BB005ECEEB /* Toybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681D29D4C3BB005ECEEB /* Toybox.swift */; };
@@ -48,13 +49,14 @@
 
 /* Begin PBXFileReference section */
 		5F09740529F8A1F10036E8A1 /* TypedID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedID.swift; sourceTree = "<group>"; };
+		5F31F2F829FA08AB00B79E7C /* TitleSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSlide.swift; sourceTree = "<group>"; };
 		5F69680529D1005D005ECEEB /* ArrayUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUtils.swift; sourceTree = "<group>"; };
-		5F69680C29D10ADD005ECEEB /* SlidesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidesView.swift; sourceTree = "<group>"; };
+		5F69680C29D10ADD005ECEEB /* InfoSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSlide.swift; sourceTree = "<group>"; };
 		5F69680F29D10B17005ECEEB /* WebContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContent.swift; sourceTree = "<group>"; };
 		5F69681029D10B17005ECEEB /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		5F69681329D10E4E005ECEEB /* WebView+JS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebView+JS.swift"; sourceTree = "<group>"; };
 		5F69681529D11885005ECEEB /* QuestionGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionGen.swift; sourceTree = "<group>"; };
-		5F69681729D3CA4F005ECEEB /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		5F69681729D3CA4F005ECEEB /* QuestionSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSlide.swift; sourceTree = "<group>"; };
 		5F69681929D3CA61005ECEEB /* ProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
 		5F69681B29D3ECC2005ECEEB /* SeededRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeededRandom.swift; sourceTree = "<group>"; };
 		5F69681D29D4C3BB005ECEEB /* Toybox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toybox.swift; sourceTree = "<group>"; };
@@ -99,6 +101,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F31F2F729FA086E00B79E7C /* Slides */ = {
+			isa = PBXGroup;
+			children = (
+				5F69680C29D10ADD005ECEEB /* InfoSlide.swift */,
+				5F69681729D3CA4F005ECEEB /* QuestionSlide.swift */,
+				5F31F2F829FA08AB00B79E7C /* TitleSlide.swift */,
+			);
+			path = Slides;
+			sourceTree = "<group>";
+		};
 		5F69680E29D10B0C005ECEEB /* Web */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,8 +146,7 @@
 				5FB040BE29D0F26F008C24B1 /* NewCourse.swift */,
 				5FB040C029D0F3AC008C24B1 /* CourseView.swift */,
 				5FB040CF29D0FC67008C24B1 /* UnitView.swift */,
-				5F69680C29D10ADD005ECEEB /* SlidesView.swift */,
-				5F69681729D3CA4F005ECEEB /* QuizView.swift */,
+				5F31F2F729FA086E00B79E7C /* Slides */,
 				5F69681D29D4C3BB005ECEEB /* Toybox.swift */,
 				5F79E1DA29DFC05000B91392 /* Settings.swift */,
 				5FF4168A29E394AF007CCB5A /* Chat */,
@@ -294,17 +305,18 @@
 				5FF4168529E378CE007CCB5A /* ChatStore.swift in Sources */,
 				5FB040C129D0F3AC008C24B1 /* CourseView.swift in Sources */,
 				5FB040BF29D0F26F008C24B1 /* NewCourse.swift in Sources */,
-				5F69680D29D10ADD005ECEEB /* SlidesView.swift in Sources */,
+				5F69680D29D10ADD005ECEEB /* InfoSlide.swift in Sources */,
 				5FB040C329D0F402008C24B1 /* CourseGen.swift in Sources */,
 				5FF4169029E3B14E007CCB5A /* TypingView.swift in Sources */,
 				5FF4168929E37C18007CCB5A /* ChatGen.swift in Sources */,
 				5FB040D029D0FC67008C24B1 /* UnitView.swift in Sources */,
 				5F69681429D10E4E005ECEEB /* WebView+JS.swift in Sources */,
+				5F31F2F929FA08AB00B79E7C /* TitleSlide.swift in Sources */,
 				5F7B6F7C29F89E9200B5C15F /* IdentifiedArray.swift in Sources */,
 				5FB040B929D0EFCA008C24B1 /* SwiftUIHelpers.swift in Sources */,
 				5FB040B629D0EFC1008C24B1 /* DataStore.swift in Sources */,
 				5FB040CB29D0F470008C24B1 /* PromptPacker.swift in Sources */,
-				5F69681829D3CA50005ECEEB /* QuizView.swift in Sources */,
+				5F69681829D3CA50005ECEEB /* QuestionSlide.swift in Sources */,
 				5F69681E29D4C3BB005ECEEB /* Toybox.swift in Sources */,
 				5F69680629D1005D005ECEEB /* ArrayUtils.swift in Sources */,
 				5F69681229D10B17005ECEEB /* WebView.swift in Sources */,
