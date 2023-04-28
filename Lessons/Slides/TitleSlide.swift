@@ -9,6 +9,6 @@ struct TitleSlide: View {
             .lineLimit(nil)
             .font(.funHeader)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .padding(40)
+            .padding(Constants.slideMargin)
     }
 }

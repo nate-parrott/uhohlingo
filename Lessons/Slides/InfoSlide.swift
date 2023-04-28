@@ -44,7 +44,8 @@ body {
     font-family: ui-rounded;
     font-size: 1.2em;
     line-height: 1.5;
-    padding: 1em;
+    padding: \(Constants.slideMargin)px;
+    margin: 0;
     margin-bottom: 4em;
 }
 </style>

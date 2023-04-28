@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		5F09740629F8A1F10036E8A1 /* TypedID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09740529F8A1F10036E8A1 /* TypedID.swift */; };
 		5F31F2F929FA08AB00B79E7C /* TitleSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31F2F829FA08AB00B79E7C /* TitleSlide.swift */; };
+		5F57F76D29FB5A8000077992 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F76C29FB5A8000077992 /* Constants.swift */; };
 		5F69680629D1005D005ECEEB /* ArrayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69680529D1005D005ECEEB /* ArrayUtils.swift */; };
 		5F69680929D10A59005ECEEB /* Ink in Frameworks */ = {isa = PBXBuildFile; productRef = 5F69680829D10A59005ECEEB /* Ink */; };
 		5F69680D29D10ADD005ECEEB /* InfoSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69680C29D10ADD005ECEEB /* InfoSlide.swift */; };
 		5F69681129D10B17005ECEEB /* WebContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69680F29D10B17005ECEEB /* WebContent.swift */; };
 		5F69681229D10B17005ECEEB /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681029D10B17005ECEEB /* WebView.swift */; };
 		5F69681429D10E4E005ECEEB /* WebView+JS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681329D10E4E005ECEEB /* WebView+JS.swift */; };
-		5F69681629D11885005ECEEB /* QuestionGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681529D11885005ECEEB /* QuestionGen.swift */; };
+		5F69681629D11885005ECEEB /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681529D11885005ECEEB /* Questions.swift */; };
 		5F69681829D3CA50005ECEEB /* QuestionSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681729D3CA4F005ECEEB /* QuestionSlide.swift */; };
 		5F69681A29D3CA61005ECEEB /* ProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681929D3CA61005ECEEB /* ProgressStore.swift */; };
 		5F69681C29D3ECC2005ECEEB /* SeededRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681B29D3ECC2005ECEEB /* SeededRandom.swift */; };
@@ -50,12 +51,13 @@
 /* Begin PBXFileReference section */
 		5F09740529F8A1F10036E8A1 /* TypedID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedID.swift; sourceTree = "<group>"; };
 		5F31F2F829FA08AB00B79E7C /* TitleSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSlide.swift; sourceTree = "<group>"; };
+		5F57F76C29FB5A8000077992 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5F69680529D1005D005ECEEB /* ArrayUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUtils.swift; sourceTree = "<group>"; };
 		5F69680C29D10ADD005ECEEB /* InfoSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSlide.swift; sourceTree = "<group>"; };
 		5F69680F29D10B17005ECEEB /* WebContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContent.swift; sourceTree = "<group>"; };
 		5F69681029D10B17005ECEEB /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		5F69681329D10E4E005ECEEB /* WebView+JS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebView+JS.swift"; sourceTree = "<group>"; };
-		5F69681529D11885005ECEEB /* QuestionGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionGen.swift; sourceTree = "<group>"; };
+		5F69681529D11885005ECEEB /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		5F69681729D3CA4F005ECEEB /* QuestionSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSlide.swift; sourceTree = "<group>"; };
 		5F69681929D3CA61005ECEEB /* ProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
 		5F69681B29D3ECC2005ECEEB /* SeededRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeededRandom.swift; sourceTree = "<group>"; };
@@ -104,9 +106,9 @@
 		5F31F2F729FA086E00B79E7C /* Slides */ = {
 			isa = PBXGroup;
 			children = (
+				5F31F2F829FA08AB00B79E7C /* TitleSlide.swift */,
 				5F69680C29D10ADD005ECEEB /* InfoSlide.swift */,
 				5F69681729D3CA4F005ECEEB /* QuestionSlide.swift */,
-				5F31F2F829FA08AB00B79E7C /* TitleSlide.swift */,
 			);
 			path = Slides;
 			sourceTree = "<group>";
@@ -146,6 +148,7 @@
 				5FB040BE29D0F26F008C24B1 /* NewCourse.swift */,
 				5FB040C029D0F3AC008C24B1 /* CourseView.swift */,
 				5FB040CF29D0FC67008C24B1 /* UnitView.swift */,
+				5F57F76C29FB5A8000077992 /* Constants.swift */,
 				5F31F2F729FA086E00B79E7C /* Slides */,
 				5F69681D29D4C3BB005ECEEB /* Toybox.swift */,
 				5F79E1DA29DFC05000B91392 /* Settings.swift */,
@@ -201,7 +204,7 @@
 				5F69681929D3CA61005ECEEB /* ProgressStore.swift */,
 				5FB040C229D0F402008C24B1 /* CourseGen.swift */,
 				5FB040D129D0FECA008C24B1 /* SlideGen.swift */,
-				5F69681529D11885005ECEEB /* QuestionGen.swift */,
+				5F69681529D11885005ECEEB /* Questions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -320,13 +323,14 @@
 				5F69681E29D4C3BB005ECEEB /* Toybox.swift in Sources */,
 				5F69680629D1005D005ECEEB /* ArrayUtils.swift in Sources */,
 				5F69681229D10B17005ECEEB /* WebView.swift in Sources */,
+				5F57F76D29FB5A8000077992 /* Constants.swift in Sources */,
 				5FB040A529D0EF52008C24B1 /* LessonsApp.swift in Sources */,
 				5FF4168729E37A5D007CCB5A /* ScrollableCenteredView.swift in Sources */,
 				5F69681129D10B17005ECEEB /* WebContent.swift in Sources */,
 				5FB040D229D0FECA008C24B1 /* SlideGen.swift in Sources */,
 				5F69681A29D3CA61005ECEEB /* ProgressStore.swift in Sources */,
 				5FF4168E29E39686007CCB5A /* Animations.swift in Sources */,
-				5F69681629D11885005ECEEB /* QuestionGen.swift in Sources */,
+				5F69681629D11885005ECEEB /* Questions.swift in Sources */,
 				5FB040BD29D0EFE3008C24B1 /* CourseStore.swift in Sources */,
 				5FB040C729D0F465008C24B1 /* Tokens.swift in Sources */,
 			);

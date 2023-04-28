@@ -2,21 +2,37 @@ import SwiftUI
 
 struct QuestionSlide: View {
     var question: Question
+    var unitID: Unit.ID
+    var wantsToShowChat: () -> Void
 
     @State private var answer: ProgressState.Answer? // TODO
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            Group {
+            VStack(spacing: 24) {
                 if let mc = question.multipleChoice {
                     MultipleChoiceQuestionView(question: question, multipleChoice: mc, existingAnswer: answer) { answer in
                         ProgressStore.shared.model.quizResponses[answer.question.id] = answer
                     }
                 }
+
+                if answer != nil {
+                    FunButtonOnTouchdown(action: { explain() }, options: .init()) {
+                        Text("Explain it!")
+                    }
+                }
             }
-            .padding()
+            .padding(Constants.slideMargin)
         }
         .onReceive(ProgressStore.shared.publisher.map { $0.quizResponses[question.id] }, perform: { self.answer = $0 })
+    }
+
+    private func explain() {
+        guard let answer = answer else { return }
+        wantsToShowChat()
+        Task {
+            try? await ChatStore.shared.send(message: .userWantsExplanation(answer), toThreadForUnit: unitID)
+        }
     }
 }
 
@@ -155,13 +171,13 @@ private struct MultipleChoiceQuestionView: View {
                 }
             }
         }
-        .onChange(of: answeredCorrectly) { newValue in
-            if let newValue {
-                if newValue {
-                    UINotificationFeedbackGenerator().notificationOccurred(newValue ? .success : .error)
-                }
-            }
-        }
+//        .onChange(of: answeredCorrectly) { newValue in
+//            if let newValue {
+//                if newValue {
+//                    UINotificationFeedbackGenerator().notificationOccurred(newValue ? .success : .error)
+//                }
+//            }
+//        }
     }
 
     private var answeredCorrectly: Bool? {

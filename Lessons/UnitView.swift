@@ -43,11 +43,11 @@ private struct _UnitView: View {
     var body: some View {
         FunScreen {
             FunHeaderBase(center: { slider }, leadingButton: { BackButton() }, trailingButton: { chatToggleButton })
-            ZStack {
-                content
-                chat.opacity(unitViewState.showingChat ? 1 : 0)
-            }
+            content
         }
+        .sheet(isPresented: .init(get: { unitViewState.showingChat }, set: { unitViewState.showingChat = $0 }), content: {
+            chat
+        })
         .task {
             if generationInProgress { return }
             generationInProgress = true
@@ -63,7 +63,7 @@ private struct _UnitView: View {
 
     @ViewBuilder private var chatToggleButton: some View {
         Button(action: { unitViewState.showingChat = !unitViewState.showingChat }) {
-            Image(systemName: unitViewState.showingChat ? "questionmark.bubble.fill" : "questionmark.bubble")
+            Image(systemName: "questionmark.bubble")
         }
     }
 
@@ -72,7 +72,7 @@ private struct _UnitView: View {
             if let curSlide {
                 switch curSlide.content {
                 case .info(let info): InfoSlide(info: info)
-                case .question(let q): QuestionSlide(question: q)
+                case .question(let q): QuestionSlide(question: q, unitID: unit.id, wantsToShowChat: { unitViewState.showingChat = true })
                 case .title(let t): TitleSlide(titleSlide: t)
                 }
             } else {
@@ -105,7 +105,13 @@ private struct _UnitView: View {
     }
 
     @ViewBuilder private var chat: some View {
-        ChatView(unitId: unit.id)
+        let doneButton = Button(action: { unitViewState.showingChat = false }) {
+            Image(systemName: "xmark")
+        }
+        FunScreen {
+            FunHeader(title: "Chat", leadingButton: { EmptyView() }, trailingButton: { doneButton })
+            ChatView(unitId: unit.id)
+        }
     }
 
     private var curSlide: Slide? {

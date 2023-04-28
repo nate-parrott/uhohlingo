@@ -51,7 +51,7 @@ extension CourseStore {
                     if Task.isCancelled { return }
                 }
 
-                for await question in try self.generateQuestions(unitID: unitID, topic: topic, count: 3) {
+                for await question in try self.generateQuestions(unitID: unitID, topic: topic, count: Constants.questionsPerTopic) {
                     let questionSlide = Slide(id: .init(unit: unitID, group: groupID, slide: "question-\(question.id.rawValue)"), content: .question(question))
                     group.slides.append(questionSlide)
                     continuation.yield(group)

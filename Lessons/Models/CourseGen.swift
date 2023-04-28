@@ -12,11 +12,12 @@ extension CourseStore {
             throw GenerateUnitError.noSuchLesson
         }
         var prompt = Prompt()
-        let count = 20
+        let count = Constants.unitCount
+        let topicCount = Constants.topicsPerUnit
         prompt.append("""
 You are creating a simple online course to teach a topic provided by the user.
 When a topic is provided, output a lesson plan consisting of \(count) units that present a broad overview of the provided topic.
-For each of the \(count) units, provide a 1-5 word name, and a concise one-sentence description. Each unit should be scoped such that its information can be learned in about 10 minutes.
+For each of the \(count) units, provide a 1-5 word name and \(topicCount) concisely-named sub-topics. Each unit should be scoped such that its information can be learned in about 10 minutes.
 
 Lesson content should reflect an inclusive, diverse perspective (e.g. history lessons should not be euro-centric.)
 
@@ -25,7 +26,7 @@ Provide lesson plans as valid JSON, encloses in code blocks (```). A lesson's JS
 type Lesson = Unit[]
 type Unit = {
     name: string
-    topics: [String] // 2-5 topics that this unit will cover
+    topics: [String] // \(topicCount) topics that this unit will cover
 }
 ```
 ```

@@ -87,9 +87,3 @@ extension CourseStore {
         }
     }
 }
-//
-//extension LessonState {
-//    func unit(forId id: UnitID) -> Unit? {
-//        lessons[id.lessonId]?.units.get(id.unitIndex)
-//    }
-//}
