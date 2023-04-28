@@ -27,8 +27,10 @@ private struct _CourseView: View {
             list
         }
         .task {
-            if course.units.count == 0 {
-                await generateCourse()
+            Task.detached { // do not tie to lifecycle of the view
+                if course.units.count == 0 {
+                    await generateCourse()
+                }
             }
         }
     }

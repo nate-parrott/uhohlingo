@@ -4,11 +4,12 @@ struct TitleSlide: View {
     var titleSlide: TitleSlideContent
 
     var body: some View {
-        Text(titleSlide.title)
-            .multilineTextAlignment(.leading)
+        FunTitleText(text: Text(titleSlide.title))
+//        Text(titleSlide.title)
+            .multilineTextAlignment(.center)
             .lineLimit(nil)
-            .font(.funHeader)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+//            .font(.funHeader)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(Constants.slideMargin)
     }
 }
