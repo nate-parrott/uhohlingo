@@ -42,7 +42,8 @@ private struct _UnitView: View {
 
     var body: some View {
         FunScreen {
-            FunHeaderBase(center: { slider }, leadingButton: { BackButton() }, trailingButton: { chatToggleButton })
+            FunHeader(title: unit.name, leadingButton: { BackButton() }, trailingButton: { chatToggleButton })
+//            FunHeaderBase(center: {  }, leadingButton: { BackButton() }, trailingButton: { chatToggleButton })
             content
         }
         .sheet(isPresented: .init(get: { unitViewState.showingChat }, set: { unitViewState.showingChat = $0 }), content: {
@@ -57,13 +58,9 @@ private struct _UnitView: View {
         }
     }
 
-    @ViewBuilder private var slider: some View {
-        Slider(value: .constant(0))
-    }
-
     @ViewBuilder private var chatToggleButton: some View {
         Button(action: { unitViewState.showingChat = !unitViewState.showingChat }) {
-            Image(systemName: "questionmark.bubble")
+            Image(systemName: "questionmark.bubble.fill")
         }
     }
 
@@ -79,29 +76,25 @@ private struct _UnitView: View {
                 Spacer()
             }
             Divider()
-            Button(action: { unitViewState.currentSlide = nextSlideId }) {
-                if generationInProgress && nextSlideId == nil {
-                    FunProgressView()
-                } else {
-                    Text("Next")
+            HStack(spacing: 14) {
+                Button(action: { unitViewState.currentSlide = prevSlideId }) {
+                    Image(systemName: "arrow.backward")
                 }
+                .disabled(prevSlideId == nil)
+                .frame(width: 56)
+
+                Button(action: { unitViewState.currentSlide = nextSlideId }) {
+                    if generationInProgress && nextSlideId == nil {
+                        FunProgressView()
+                    } else {
+                        Text("Next")
+                    }
+                }
+                .disabled(nextSlideId == nil)
             }
-            .disabled(nextSlideId == nil)
             .buttonStyle(FunButtonStyle())
             .padding()
         }
-//        ScrollView {
-//            LazyVStack(alignment: .leading) {
-//                ForEach(unit.slideGroups.flatMap(\.slides)) { slide in
-//                    SlidePreview(slide: slide)
-//                }
-//            }
-//        }
-//        .overlay(alignment: .bottom) {
-//            if generationInProgress {
-//                LoaderFeather()
-//            }
-//        }
     }
 
     @ViewBuilder private var chat: some View {
@@ -115,15 +108,26 @@ private struct _UnitView: View {
     }
 
     private var curSlide: Slide? {
-        let allSlides = unit.slideGroups.flatMap(\.slides)
         if let id = unitViewState.currentSlide, let slide = allSlides.first(where: { $0.id == id }) {
             return slide
         }
         return allSlides.first
     }
 
+    private var allSlides: [Slide] {
+        unit.slideGroups.flatMap(\.slides)
+    }
+
+    private var prevSlideId: Slide.ID? {
+        if let curSlide,
+            let curIdx = allSlides.firstIndex(where: { $0.id == curSlide.id }),
+            curIdx > 0 {
+            return allSlides[curIdx - 1].id
+        }
+        return nil
+    }
+
     private var nextSlideId: Slide.ID? {
-        let allSlides = unit.slideGroups.flatMap(\.slides)
         if let curSlide,
             let curIdx = allSlides.firstIndex(where: { $0.id == curSlide.id }),
             curIdx + 1 < allSlides.count {

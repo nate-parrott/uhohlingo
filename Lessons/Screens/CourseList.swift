@@ -13,6 +13,9 @@ struct CourseList: View {
                     return state.courses.values.sorted(by: { $0.date > $1.date })
                 }).removeDuplicates(), perform: { self.courses = $0 })
         }
+        .navigationDestination(for: Course.ID.self, destination: { courseID in
+            CourseView(id: courseID)
+        })
         .sheet(isPresented: $showingNewCourseDialog) {
             NewCourse { course in
                 showingNewCourseDialog = false
@@ -50,11 +53,14 @@ struct CourseList: View {
     @ViewBuilder private var list: some View {
         List {
             ForEach(courses) { course in
-                NavigationLink(destination: {
-                    CourseView(id: course.id)
-                }) {
+                NavigationLink(value: course.id) {
                     Text(course.title)
                 }
+//                NavigationLink(destination: {
+//                    CourseView(id: course.id)
+//                }) {
+//                    Text(course.title)
+//                }
                 .asFunListCell
             }
             .onDelete { indexSet in

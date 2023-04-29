@@ -28,18 +28,27 @@ extension CourseStore {
 
     func generateSlideGroup(unitID: Unit.ID, groupID: SlideGroup.ID) throws -> AsyncStream<SlideGroup> {
         switch groupID {
-        case .topic(let topic): return try generateTopicSlideGroup(unitID: unitID, groupID: groupID, topic: topic)
+        case .topic(let topic):
+            return try generateTopicSlideGroup(unitID: unitID, groupID: groupID, topic: topic)
+        case .conclusion:
+            var group = SlideGroup(slides: .init(), id: .conclusion, completedGenerating: true)
+            group.slides.append(.init(id: Slide.SlideID(unit: unitID, group: groupID, slide: "text"), content: .title(.init(title: "That’s it!"))))
+            return AsyncStream(just: group)
         }
     }
 
     func generateTopicSlideGroup(unitID: Unit.ID, groupID: SlideGroup.ID, topic: String) throws -> AsyncStream<SlideGroup> {
+        guard let course = model.courses[unitID.course], let unit = course.units[unitID] else {
+            throw UnitContentGenerationError.noSuchUnit
+        }
+
         return AsyncStream { continuation in
             Task {
                 var group = SlideGroup(slides: .init(), id: groupID, completedGenerating: false)
 
                 let titleSlide = Slide(
                     id: .init(unit: unitID, group: groupID, slide: "title"),
-                    content: .title(TitleSlideContent(title: topic))
+                    content: .title(TitleSlideContent(title: topic, emoji: unit.emoji))
                 )
                 group.slides.append(titleSlide)
                 continuation.yield(group)
@@ -170,7 +179,9 @@ extension CourseStore {
 
 extension Unit {
     var necessarySlideGroupIDs: [SlideGroup.ID] {
-        topics.map { SlideGroup.ID.topic($0) }
+        var ids: [SlideGroup.ID] = topics.map { SlideGroup.ID.topic($0) }
+        ids.append(.conclusion)
+        return ids
     }
 
     var completeSlideGroupIDs: [SlideGroup.ID] {

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5F09740629F8A1F10036E8A1 /* TypedID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09740529F8A1F10036E8A1 /* TypedID.swift */; };
+		5F27947029FC6C7400F65FF4 /* LilitaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F27946F29FC6C7400F65FF4 /* LilitaOne-Regular.ttf */; };
+		5F27947329FCB6A200F65FF4 /* Concurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27947229FCB6A200F65FF4 /* Concurrency.swift */; };
+		5F27947529FCB6BD00F65FF4 /* AwaitPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27947429FCB6BD00F65FF4 /* AwaitPublisher.swift */; };
 		5F31F2F929FA08AB00B79E7C /* TitleSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31F2F829FA08AB00B79E7C /* TitleSlide.swift */; };
 		5F57F76D29FB5A8000077992 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F76C29FB5A8000077992 /* Constants.swift */; };
 		5F57F77029FB5E8800077992 /* FunTitleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F76F29FB5E8800077992 /* FunTitleText.swift */; };
@@ -51,6 +54,9 @@
 
 /* Begin PBXFileReference section */
 		5F09740529F8A1F10036E8A1 /* TypedID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedID.swift; sourceTree = "<group>"; };
+		5F27946F29FC6C7400F65FF4 /* LilitaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LilitaOne-Regular.ttf"; sourceTree = "<group>"; };
+		5F27947229FCB6A200F65FF4 /* Concurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concurrency.swift; sourceTree = "<group>"; };
+		5F27947429FCB6BD00F65FF4 /* AwaitPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwaitPublisher.swift; sourceTree = "<group>"; };
 		5F31F2F829FA08AB00B79E7C /* TitleSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSlide.swift; sourceTree = "<group>"; };
 		5F57F76C29FB5A8000077992 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5F57F76F29FB5E8800077992 /* FunTitleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunTitleText.swift; sourceTree = "<group>"; };
@@ -105,6 +111,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F27946E29FC6BA700F65FF4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5F27946F29FC6C7400F65FF4 /* LilitaOne-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		5F27947129FC93F800F65FF4 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				5FB040A629D0EF52008C24B1 /* CourseList.swift */,
+				5FB040BE29D0F26F008C24B1 /* NewCourse.swift */,
+				5FB040C029D0F3AC008C24B1 /* CourseView.swift */,
+				5FB040CF29D0FC67008C24B1 /* UnitView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		5F31F2F729FA086E00B79E7C /* Slides */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,12 +179,10 @@
 			isa = PBXGroup;
 			children = (
 				5FB040CE29D0F9E8008C24B1 /* Info.plist */,
+				5F27946E29FC6BA700F65FF4 /* Fonts */,
 				5FB040A429D0EF52008C24B1 /* LessonsApp.swift */,
-				5FB040A629D0EF52008C24B1 /* CourseList.swift */,
-				5FB040BE29D0F26F008C24B1 /* NewCourse.swift */,
-				5FB040C029D0F3AC008C24B1 /* CourseView.swift */,
-				5FB040CF29D0FC67008C24B1 /* UnitView.swift */,
 				5F57F76C29FB5A8000077992 /* Constants.swift */,
+				5F27947129FC93F800F65FF4 /* Screens */,
 				5F31F2F729FA086E00B79E7C /* Slides */,
 				5F57F76E29FB5E7700077992 /* UI Toybox */,
 				5F79E1DA29DFC05000B91392 /* Settings.swift */,
@@ -194,6 +217,8 @@
 				5FF4168D29E39686007CCB5A /* Animations.swift */,
 				5F7B6F7B29F89E9200B5C15F /* IdentifiedArray.swift */,
 				5F09740529F8A1F10036E8A1 /* TypedID.swift */,
+				5F27947229FCB6A200F65FF4 /* Concurrency.swift */,
+				5F27947429FCB6BD00F65FF4 /* AwaitPublisher.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -298,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FB040AC29D0EF53008C24B1 /* Preview Assets.xcassets in Resources */,
+				5F27947029FC6C7400F65FF4 /* LilitaOne-Regular.ttf in Resources */,
 				5FB040A929D0EF53008C24B1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +345,7 @@
 				5FF4168529E378CE007CCB5A /* ChatStore.swift in Sources */,
 				5FB040C129D0F3AC008C24B1 /* CourseView.swift in Sources */,
 				5F57F77029FB5E8800077992 /* FunTitleText.swift in Sources */,
+				5F27947329FCB6A200F65FF4 /* Concurrency.swift in Sources */,
 				5FB040BF29D0F26F008C24B1 /* NewCourse.swift in Sources */,
 				5F69680D29D10ADD005ECEEB /* InfoSlide.swift in Sources */,
 				5FB040C329D0F402008C24B1 /* CourseGen.swift in Sources */,
@@ -343,6 +370,7 @@
 				5F69681A29D3CA61005ECEEB /* ProgressStore.swift in Sources */,
 				5FF4168E29E39686007CCB5A /* Animations.swift in Sources */,
 				5F69681629D11885005ECEEB /* Questions.swift in Sources */,
+				5F27947529FCB6BD00F65FF4 /* AwaitPublisher.swift in Sources */,
 				5FB040BD29D0EFE3008C24B1 /* CourseStore.swift in Sources */,
 				5FB040C729D0F465008C24B1 /* Tokens.swift in Sources */,
 			);

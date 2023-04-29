@@ -25,8 +25,9 @@ Provide lesson plans as valid JSON, encloses in code blocks (```). A lesson's JS
 ```
 type Lesson = Unit[]
 type Unit = {
-    name: string
-    topics: [String] // \(topicCount) topics that this unit will cover
+    n: string // name
+    t: [String] // topics: \(topicCount) topics that this unit will cover
+    e: string // emoji: an emoji related to this unit
 }
 ```
 ```
@@ -36,9 +37,9 @@ type Unit = {
 For example, given a topic "Basic Spanish", expected output would consist of:
 ```
 [
-    { "name": "Greetings", "topics": ["Saying hello", "Saying goodbye", "Formal greetings", "Informal greetings" },
-    { "name": "Names", "topics": ["Sharing your name", "Asking for someone's name"] },
-    { "name": "Numbers", "topics": ["Counting", "Money"] },
+{"n": "Greetings", "t": ["Saying hello", "Saying goodbye", "Formal greetings", "Informal greetings"], "e": "🤝"},
+{"n": "Names", "t": ["Sharing your name", "Asking for someone's name"], "e": "🙋‍♂️"},
+{"n": "Numbers", "t": ["Counting", "Money"], "e": "💸"},
     ...etc
 ]
 """.trimmed, role: .system)
@@ -79,8 +80,9 @@ For example, given a topic "Basic Spanish", expected output would consist of:
 private extension String {
     func parsedAsUnits(courseId: Course.ID) -> [Unit]? {
         struct PartialUnit: Codable {
-            var name: String
-            var topics: [String]
+            var n: String // name
+            var t: [String] // title
+            var e: String // emoji
         }
 
         let parts = components(separatedBy: "```")
@@ -93,7 +95,7 @@ private extension String {
             if let parsed = try? JSONDecoder().decode([PartialUnit].self, from: data) {
                 return parsed.enumerated().map { pair in
                     let (index, unit) = pair
-                    return .init(id: .init(course: courseId, unit: "\(index)"), name: unit.name, topics: unit.topics, index: index, slideGroups: .init())
+                    return .init(id: .init(course: courseId, unit: "\(index)"), name: unit.n, topics: unit.t, index: index, emoji: unit.e, slideGroups: .init())
                 }
             }
         }

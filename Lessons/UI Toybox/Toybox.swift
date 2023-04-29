@@ -68,6 +68,8 @@ struct FunHeader<B1: View, B2: View>: View {
             Text(title)
                 .font(.funHeader)
                 .padding(.vertical)
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
         }, leadingButton: leadingButton, trailingButton: trailingButton)
     }
 }

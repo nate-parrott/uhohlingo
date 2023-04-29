@@ -11,11 +11,13 @@ import SwiftUI
 struct LessonsApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationView {
+            NavigationStack {
                 CourseList()
             }
+//            NavigationView {
+//                CourseList()
+//            }
             .colorScheme(.light)
         }
     }
 }
-

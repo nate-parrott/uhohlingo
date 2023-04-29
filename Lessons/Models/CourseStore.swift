@@ -13,6 +13,7 @@ struct Unit: Equatable, Codable, Identifiable {
     var name: String
     var topics: [String]
     var index: Int
+    var emoji: String?
 
     var slideGroups: IdentifiedArray<SlideGroup>
 
@@ -29,6 +30,7 @@ struct SlideGroup: Equatable, Codable, Identifiable {
 
     enum SlideGroupID: Hashable, Codable {
         case topic(String)
+        case conclusion
     }
 }
 
@@ -51,6 +53,7 @@ struct Slide: Equatable, Codable, Identifiable {
 
 struct TitleSlideContent: Equatable, Codable {
     var title: String
+    var emoji: String?
 }
 
 struct InfoSlideContent: Equatable, Codable {

@@ -26,6 +26,9 @@ private struct _CourseView: View {
             })
             list
         }
+        .navigationDestination(for: Unit.ID.self) { unit in
+            UnitView(id: unit)
+        }
         .task {
             Task.detached { // do not tie to lifecycle of the view
                 if course.units.count == 0 {
@@ -73,8 +76,13 @@ private struct UnitCell: View {
     var unit: Unit
 
     var body: some View {
-        NavigationLink(destination: destination) {
-            label
+        NavigationLink(value: unit.id) {
+            HStack(spacing: 16) {
+                if let emoji = unit.emoji {
+                    Text(emoji).font(.system(size: 36))
+                }
+                label
+            }
         }
     }
 
