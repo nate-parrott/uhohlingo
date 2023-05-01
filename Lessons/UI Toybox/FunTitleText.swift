@@ -4,26 +4,7 @@ struct FunTitleText: View {
     var text: String
 
     var body: some View {
-        ZStack {
-//            label
-//                .repeater(distance: CGSize(width: 3, height: 5), replicas: 3, brightnessStart: -0.1, brightnessEnd: -0.3)
-//                .paddedDrawingGroup(40)
-//                .drawingGroup()
-//                .opacity(0.3)
-            label
-        }
-    }
-
-    @ViewBuilder private var label: some View {
         SelfSizingText(text: text.uppercased(), fontName: "Lilita One", fontAlignment: .center, fillColor: UIColor(named: "LightBlue")!, strokeColor: UIColor(named: "DarkBlue")!, strokeWidthProportion: 0)
-//        text
-//            .lineSpacing(12)
-//            .kerning(1)
-//            .textCase(.uppercase)
-//            .font(.custom("Lilita One", size: 40))
-//            .italic()
-//            .foregroundColor(.blue)
-////            .rotation3DEffect(.degrees(10), axis: (x: 1, y: -0.5, z: -1), perspective: 1)
     }
 }
 

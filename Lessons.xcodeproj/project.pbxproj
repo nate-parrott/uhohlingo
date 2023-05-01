@@ -11,6 +11,11 @@
 		5F27947029FC6C7400F65FF4 /* LilitaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F27946F29FC6C7400F65FF4 /* LilitaOne-Regular.ttf */; };
 		5F27947329FCB6A200F65FF4 /* Concurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27947229FCB6A200F65FF4 /* Concurrency.swift */; };
 		5F27947529FCB6BD00F65FF4 /* AwaitPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27947429FCB6BD00F65FF4 /* AwaitPublisher.swift */; };
+		5F27947B29FF539000F65FF4 /* FunHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27947A29FF539000F65FF4 /* FunHeader.swift */; };
+		5F27947D29FF53C200F65FF4 /* FunButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27947C29FF53C200F65FF4 /* FunButtonStyle.swift */; };
+		5F27947F29FF541F00F65FF4 /* FunTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27947E29FF541F00F65FF4 /* FunTextField.swift */; };
+		5F27948129FF554900F65FF4 /* BridgedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27948029FF554900F65FF4 /* BridgedTextField.swift */; };
+		5F27948329FF557000F65FF4 /* BridgedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27948229FF557000F65FF4 /* BridgedTextView.swift */; };
 		5F31F2F929FA08AB00B79E7C /* TitleSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31F2F829FA08AB00B79E7C /* TitleSlide.swift */; };
 		5F57F76D29FB5A8000077992 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F76C29FB5A8000077992 /* Constants.swift */; };
 		5F57F77029FB5E8800077992 /* FunTitleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F76F29FB5E8800077992 /* FunTitleText.swift */; };
@@ -24,7 +29,7 @@
 		5F69681829D3CA50005ECEEB /* QuestionSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681729D3CA4F005ECEEB /* QuestionSlide.swift */; };
 		5F69681A29D3CA61005ECEEB /* ProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681929D3CA61005ECEEB /* ProgressStore.swift */; };
 		5F69681C29D3ECC2005ECEEB /* SeededRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681B29D3ECC2005ECEEB /* SeededRandom.swift */; };
-		5F69681E29D4C3BB005ECEEB /* Toybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681D29D4C3BB005ECEEB /* Toybox.swift */; };
+		5F69681E29D4C3BB005ECEEB /* FunViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69681D29D4C3BB005ECEEB /* FunViews.swift */; };
 		5F79E1DB29DFC05000B91392 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F79E1DA29DFC05000B91392 /* Settings.swift */; };
 		5F7B6F7C29F89E9200B5C15F /* IdentifiedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B6F7B29F89E9200B5C15F /* IdentifiedArray.swift */; };
 		5FB040A529D0EF52008C24B1 /* LessonsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB040A429D0EF52008C24B1 /* LessonsApp.swift */; };
@@ -57,6 +62,11 @@
 		5F27946F29FC6C7400F65FF4 /* LilitaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LilitaOne-Regular.ttf"; sourceTree = "<group>"; };
 		5F27947229FCB6A200F65FF4 /* Concurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concurrency.swift; sourceTree = "<group>"; };
 		5F27947429FCB6BD00F65FF4 /* AwaitPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwaitPublisher.swift; sourceTree = "<group>"; };
+		5F27947A29FF539000F65FF4 /* FunHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunHeader.swift; sourceTree = "<group>"; };
+		5F27947C29FF53C200F65FF4 /* FunButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunButtonStyle.swift; sourceTree = "<group>"; };
+		5F27947E29FF541F00F65FF4 /* FunTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunTextField.swift; sourceTree = "<group>"; };
+		5F27948029FF554900F65FF4 /* BridgedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgedTextField.swift; sourceTree = "<group>"; };
+		5F27948229FF557000F65FF4 /* BridgedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgedTextView.swift; sourceTree = "<group>"; };
 		5F31F2F829FA08AB00B79E7C /* TitleSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSlide.swift; sourceTree = "<group>"; };
 		5F57F76C29FB5A8000077992 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5F57F76F29FB5E8800077992 /* FunTitleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunTitleText.swift; sourceTree = "<group>"; };
@@ -69,7 +79,7 @@
 		5F69681729D3CA4F005ECEEB /* QuestionSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSlide.swift; sourceTree = "<group>"; };
 		5F69681929D3CA61005ECEEB /* ProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
 		5F69681B29D3ECC2005ECEEB /* SeededRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeededRandom.swift; sourceTree = "<group>"; };
-		5F69681D29D4C3BB005ECEEB /* Toybox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toybox.swift; sourceTree = "<group>"; };
+		5F69681D29D4C3BB005ECEEB /* FunViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunViews.swift; sourceTree = "<group>"; };
 		5F79E1DA29DFC05000B91392 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		5F7B6F7B29F89E9200B5C15F /* IdentifiedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiedArray.swift; sourceTree = "<group>"; };
 		5FB040A129D0EF52008C24B1 /* Lessons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lessons.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,8 +153,13 @@
 		5F57F76E29FB5E7700077992 /* UI Toybox */ = {
 			isa = PBXGroup;
 			children = (
-				5F69681D29D4C3BB005ECEEB /* Toybox.swift */,
+				5F69681D29D4C3BB005ECEEB /* FunViews.swift */,
+				5F27947C29FF53C200F65FF4 /* FunButtonStyle.swift */,
+				5F27947A29FF539000F65FF4 /* FunHeader.swift */,
 				5F57F76F29FB5E8800077992 /* FunTitleText.swift */,
+				5F27947E29FF541F00F65FF4 /* FunTextField.swift */,
+				5F27948029FF554900F65FF4 /* BridgedTextField.swift */,
+				5F27948229FF557000F65FF4 /* BridgedTextView.swift */,
 			);
 			path = "UI Toybox";
 			sourceTree = "<group>";
@@ -354,23 +369,28 @@
 				5FB040D029D0FC67008C24B1 /* UnitView.swift in Sources */,
 				5F69681429D10E4E005ECEEB /* WebView+JS.swift in Sources */,
 				5F31F2F929FA08AB00B79E7C /* TitleSlide.swift in Sources */,
+				5F27948129FF554900F65FF4 /* BridgedTextField.swift in Sources */,
 				5F7B6F7C29F89E9200B5C15F /* IdentifiedArray.swift in Sources */,
 				5FB040B929D0EFCA008C24B1 /* SwiftUIHelpers.swift in Sources */,
 				5FB040B629D0EFC1008C24B1 /* DataStore.swift in Sources */,
 				5FB040CB29D0F470008C24B1 /* PromptPacker.swift in Sources */,
 				5F69681829D3CA50005ECEEB /* QuestionSlide.swift in Sources */,
-				5F69681E29D4C3BB005ECEEB /* Toybox.swift in Sources */,
+				5F69681E29D4C3BB005ECEEB /* FunViews.swift in Sources */,
+				5F27948329FF557000F65FF4 /* BridgedTextView.swift in Sources */,
 				5F69680629D1005D005ECEEB /* ArrayUtils.swift in Sources */,
 				5F69681229D10B17005ECEEB /* WebView.swift in Sources */,
 				5F57F76D29FB5A8000077992 /* Constants.swift in Sources */,
 				5FB040A529D0EF52008C24B1 /* LessonsApp.swift in Sources */,
+				5F27947B29FF539000F65FF4 /* FunHeader.swift in Sources */,
 				5FF4168729E37A5D007CCB5A /* ScrollableCenteredView.swift in Sources */,
 				5F69681129D10B17005ECEEB /* WebContent.swift in Sources */,
 				5FB040D229D0FECA008C24B1 /* SlideGen.swift in Sources */,
 				5F69681A29D3CA61005ECEEB /* ProgressStore.swift in Sources */,
 				5FF4168E29E39686007CCB5A /* Animations.swift in Sources */,
+				5F27947F29FF541F00F65FF4 /* FunTextField.swift in Sources */,
 				5F69681629D11885005ECEEB /* Questions.swift in Sources */,
 				5F27947529FCB6BD00F65FF4 /* AwaitPublisher.swift in Sources */,
+				5F27947D29FF53C200F65FF4 /* FunButtonStyle.swift in Sources */,
 				5FB040BD29D0EFE3008C24B1 /* CourseStore.swift in Sources */,
 				5FB040C729D0F465008C24B1 /* Tokens.swift in Sources */,
 			);

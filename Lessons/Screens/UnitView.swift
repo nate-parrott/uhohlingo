@@ -43,7 +43,6 @@ private struct _UnitView: View {
     var body: some View {
         FunScreen {
             FunHeader(title: unit.name, leadingButton: { BackButton() }, trailingButton: { chatToggleButton })
-//            FunHeaderBase(center: {  }, leadingButton: { BackButton() }, trailingButton: { chatToggleButton })
             content
         }
         .sheet(isPresented: .init(get: { unitViewState.showingChat }, set: { unitViewState.showingChat = $0 }), content: {
@@ -93,7 +92,7 @@ private struct _UnitView: View {
                 .disabled(nextSlideId == nil)
             }
             .buttonStyle(FunButtonStyle())
-            .padding()
+            .padding(Constants.slideMargin)
         }
     }
 
