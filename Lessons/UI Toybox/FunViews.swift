@@ -1,5 +1,19 @@
 import SwiftUI
 
+struct RandomColorView: View {
+    @State private var color = Color.gray
+
+    var body: some View {
+        Circle()
+            .fill(color)
+            .frame(both: 20)
+            .onAppear {
+                let colors: [Color] = [.blue, .purple, .pink, .yellow, .green, .orange, .red, .teal, .brown, .cyan]
+                self.color = colors.randomElement()!
+            }
+    }
+}
+
 struct FunProgressView: View {
     enum Size: Equatable {
         case small

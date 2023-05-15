@@ -4,17 +4,22 @@ struct TitleSlide: View {
     var titleSlide: TitleSlideContent
 
     var body: some View {
-        FunTitleText(text: fullText)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(Constants.slideMargin)
+        VStack(spacing: 20) {
+            if let emoji = titleSlide.emoji {
+                Text(emoji).font(.system(size: 120))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            FunTitleText(text: titleSlide.title, fontAlignment: .leading, verticalAligmment: .top)
+            Spacer()
+        }
+        .padding(Constants.slideMargin)
     }
 
-    private var fullText: String {
-        if let emoji = titleSlide.emoji {
-            return "\(emoji)\n\n\(titleSlide.title)"
-        }
-        return titleSlide.title
-    }
+//    @ViewBuilder private var emoji: some View {
+//        if let emoji = titleSlide.emoji {
+//            Text(emoji).font(.system(size: 90))
+//        }
+//    }
 }
 
 // Previews

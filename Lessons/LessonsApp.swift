@@ -18,6 +18,7 @@ struct LessonsApp: App {
 //                CourseList()
 //            }
             .colorScheme(.light)
+            .preferredColorScheme(.light)
         }
     }
 }

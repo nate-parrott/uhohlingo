@@ -67,9 +67,9 @@ private struct _UnitView: View {
         VStack(spacing: 0) {
             if let curSlide {
                 switch curSlide.content {
-                case .info(let info): InfoSlide(info: info)
-                case .question(let q): QuestionSlide(question: q, unitID: unit.id, wantsToShowChat: { unitViewState.showingChat = true })
-                case .title(let t): TitleSlide(titleSlide: t)
+                case .info(let info): InfoSlide(info: info).id(curSlide.id)
+                case .question(let q): QuestionSlide(question: q, unitID: unit.id, wantsToShowChat: { unitViewState.showingChat = true }).id(curSlide.id)
+                case .title(let t): TitleSlide(titleSlide: t).id(curSlide.id)
                 }
             } else {
                 Spacer()

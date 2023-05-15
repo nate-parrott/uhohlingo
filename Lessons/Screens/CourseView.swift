@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CourseView: View {
+struct CourseView: View, Equatable {
     var id: Course.ID
 
     var body: some View {

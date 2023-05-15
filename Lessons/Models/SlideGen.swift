@@ -144,7 +144,8 @@ extension CourseStore {
         - Output each question on its own line, in JSON form, as type `Question` in the schema above.
         - Do not include any additional text on each line besides the JSON string. (This means each line should begin with { and end with })
         - Questions should test knowledge introduced in this topic, but may depend on knowledge from previous units.
-        - Questions should be of moderate difficulty.
+        - Questions should be of MODERATE DIFFICULTY (high school or college-level). The learner should need to absorb the unit's knowledge to answer the question. Common sense should not be sufficient to answer the question. False answers should seem plausible unless the learner knows the material.
+        - Questions should require understanding of the material, and may pose hyptotheticals or raise examples. Avoid merely restating material.
         - Keep it concise, engaging and fun.
 
         Some examples of questions for a hypothetic unit about Spanish:

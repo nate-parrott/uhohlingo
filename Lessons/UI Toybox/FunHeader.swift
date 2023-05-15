@@ -7,6 +7,7 @@ struct FunHeader<B1: View, B2: View>: View {
 
     var body: some View {
         FunHeaderBase(center: {
+//            RandomColorView()
             Text(title)
                 .font(.funHeader)
                 .padding(.vertical)

@@ -2,9 +2,19 @@ import SwiftUI
 
 struct FunTitleText: View {
     var text: String
+    var fontAlignment = TextAlignment.leading
+    var verticalAligmment = VerticalAlignment.center
 
     var body: some View {
-        SelfSizingText(text: text.uppercased(), fontName: "Lilita One", fontAlignment: .center, fillColor: UIColor(named: "LightBlue")!, strokeColor: UIColor(named: "DarkBlue")!, strokeWidthProportion: 0)
+        SelfSizingText(
+            text: text.uppercased(),
+            fontName: "Lilita One",
+            fontAlignment: fontAlignment,
+            verticalAligmment: verticalAligmment,
+            fillColor: UIColor(named: "LightBlue")!,
+            strokeColor: UIColor(named: "DarkBlue")!,
+            strokeWidthProportion: 0
+        )
     }
 }
 

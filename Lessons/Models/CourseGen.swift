@@ -61,7 +61,9 @@ For example, given a topic "Basic Spanish", expected output would consist of:
             if let units = partial.content.parsedAsUnits(courseId: id) {
                 CourseStore.shared.modify { state in
                     for unit in units {
-                        state.courses[course.id]?.units[unit.id] = unit
+                        if state.courses[course.id]?.units[unit.id] == nil {
+                            state.courses[course.id]?.units[unit.id] = unit
+                        }
                     }
                 }
 //                CourseStore.shared.model.courses[course.id]?.units = Array(units.values)
