@@ -8,11 +8,15 @@ struct CourseList: View {
     var body: some View {
         FunScreen {
             header
-            list
-                .onReceive(CourseStore.shared.publisher.map({ state in
-                    return state.courses.values.sorted(by: { $0.date > $1.date })
-                }).removeDuplicates(), perform: { self.courses = $0 })
+            if courses.count > 0 {
+                list
+            } else {
+                Color.clear
+            }
         }
+        .onReceive(CourseStore.shared.publisher.map({ state in
+            return state.courses.values.sorted(by: { $0.date > $1.date })
+        }).removeDuplicates(), perform: { self.courses = $0 })
         .navigationDestination(for: Course.ID.self, destination: { courseID in
             CourseView(id: courseID)
         })

@@ -72,7 +72,7 @@ For example, given a topic "Basic Spanish", expected output would consist of:
             lastResponse = partial.content
         }
 
-        if CourseStore.shared.model.courses[course.id]!.units.count < 1 {
+        if let finalUnitCount = CourseStore.shared.model.courses[course.id]?.units.count, finalUnitCount < 1 {
             print("Bad output: \(lastResponse)")
             throw GenerateUnitError.badOutput
         }
