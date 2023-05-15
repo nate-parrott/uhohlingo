@@ -48,6 +48,9 @@ body {
     margin: 0;
     margin-bottom: 4em;
 }
+h1, h2, h3 {
+    line-height: 1.3;
+}
 </style>
 </head>
 <body>

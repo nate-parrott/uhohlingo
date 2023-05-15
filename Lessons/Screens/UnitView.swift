@@ -84,7 +84,7 @@ private struct _UnitView: View {
 
                 Button(action: { unitViewState.currentSlide = nextSlideId }) {
                     if generationInProgress && nextSlideId == nil {
-                        FunProgressView()
+                        FunProgressView().atLeastTheHeightOfText
                     } else {
                         Text("Next")
                     }
@@ -148,5 +148,16 @@ private struct SlidePreview: View {
             }
         }
         .multilineTextAlignment(.leading)
+    }
+}
+
+private extension View {
+    @ViewBuilder var atLeastTheHeightOfText: some View {
+        Text("???")
+            .accessibilityHidden(true)
+            .opacity(0)
+            .overlay {
+                self
+            }
     }
 }
