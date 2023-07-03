@@ -87,9 +87,7 @@ private extension String {
             var e: String // emoji
         }
 
-        let parts = components(separatedBy: "```")
-        guard parts.count >= 2 else { return nil }
-        let code = parts[1]
+        guard let code = self.extractCodeFromMessage else { return nil }
 
         for appendClosingBracket in [false, true] {
             let fullStr = appendClosingBracket ? code + "]" : code
