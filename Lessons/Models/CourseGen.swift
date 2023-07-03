@@ -21,7 +21,7 @@ For each of the \(count) units, provide a 1-5 word name and \(topicCount) concis
 
 Lesson content should reflect an inclusive, diverse perspective (e.g. history lessons should not be euro-centric.)
 
-Provide lesson plans as valid JSON, encloses in code blocks (```). A lesson's JSON must conform to the following Typescript schema:
+Provide lesson plans as valid JSON, enclosed in code blocks (```). A lesson's JSON must conform to the following Typescript schema:
 ```
 type Lesson = Unit[]
 type Unit = {
@@ -42,6 +42,7 @@ For example, given a topic "Basic Spanish", expected output would consist of:
 {"n": "Numbers", "t": ["Counting", "Money"], "e": "💸"},
     ...etc
 ]
+```
 """.trimmed, role: .system)
 
         var userInput = "Topic: \(course.title)"
@@ -49,6 +50,7 @@ For example, given a topic "Basic Spanish", expected output would consist of:
             userInput += " (Extra instructions: \(prompt))"
         }
         prompt.append(userInput, role: .user)
+        prompt.append("Your JSON in code blocks:", role: .system)
 
         var lastResponse: String = ""
 
