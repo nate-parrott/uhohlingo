@@ -99,7 +99,7 @@ extension CourseStore {
           - Use bulleted lists when appropriate (for example, for describing key facts, people or characteristics)
           - Use tables when appropriate (fore example, key vocabulary or concepts, or compare-and-constrast information.)
           - Include tables, lists and formatting as appropriate.
-        - You may link to Wikipedia, but nowhere else.
+        - No links.
         """, role: .system, priority: 150)
 
                 prompt.append("""

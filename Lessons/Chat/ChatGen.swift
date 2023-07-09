@@ -90,7 +90,7 @@ This conversation concerns the unit '\(unit.name)', which covers these topics: '
         print("Prompt:\n\(packed.asConversationString)")
 
         // Now, use the prompt to generate a completion:
-        for await partial in try OpenAIAPI.shared.completeChatStreaming(.init(messages: packed)) {
+        for await partial in try OpenAIAPI.shared.completeChatStreaming(.init(messages: packed, model: llmModel())) {
             modify { state in
                 state.updateThread(unitID: unitID) { thread in
                     if let lastMsg = thread.messages.last, lastMsg.isFromAssistant {

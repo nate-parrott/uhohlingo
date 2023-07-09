@@ -13,6 +13,10 @@ struct Settings: View {
                 TextField("API Key", text: $apiKey)
                 TextField("Organization ID", text: $orgId)
                 TextField("Model", text: $model)
+                Picker(selection: $model, label: Text("Model")) {
+                    Text("GPT 3.5").tag("gpt-3.5-turbo")
+                    Text("GPT 4").tag("gpt-4")
+                }
             }
         }
         .navigationTitle("Settings")
