@@ -1,26 +1,6 @@
 import Foundation
-import OpenAIStreamingCompletions
-
-//struct Lesson: Equatable, Codable, Identifiable {
-//    var id: String
-//    var date: Date
-//    var title: String
-//    var prompt: String
-//    var units: [Unit]
-//}
-//
-//struct Unit: Equatable, Codable {
-//    var name: String
-//    var description: String
-//
-//    var slides: [LessonSlide]?
-//    var reviewQuestions: [Question]?
-//    var quizQuestions: [Question]?
-//}
-//struct LessonSlide: Equatable, Codable {
-//    var markdown: String
-//    var imageQuery: String?
-//}
+//import OpenAIStreamingCompletions
+import ChatToys
 
 extension ChatStore {
     func send(message: ChatMessage, toThreadForUnit unitID: Unit.ID) async throws {
@@ -90,7 +70,8 @@ This conversation concerns the unit '\(unit.name)', which covers these topics: '
         print("Prompt:\n\(packed.asConversationString)")
 
         // Now, use the prompt to generate a completion:
-        for await partial in try OpenAIAPI.shared.completeChatStreaming(.init(messages: packed, model: llmModel())) {
+        let llm = try ModelChoice.current.llm(json: false)
+        for try await partial in llm.completeStreaming(prompt: packed) {
             modify { state in
                 state.updateThread(unitID: unitID) { thread in
                     if let lastMsg = thread.messages.last, lastMsg.isFromAssistant {
@@ -102,13 +83,6 @@ This conversation concerns the unit '\(unit.name)', which covers these topics: '
         }
     }
 }
-
-//enum ChatMessage: Equatable, Codable {
-//    case userSaid(String)
-//    case userWantsExplanation(ProgressState.Answer)
-//    case userWantsToPractice
-//    case assistantSaid(String)
-//}
 
 extension Prompt {
     mutating func appendMessage(_ message: ChatMessage, priority: Double, canOmit: Bool, canTruncate: Int?) {
@@ -132,14 +106,6 @@ Explain the question. If the user was incorrect, explain why. Refer to the user 
         }
     }
 }
-
-//extension Unit {
-//    var concatSlidesMarkdown: String? {
-//        guard let slides else { return nil }
-//        if slides.isEmpty { return nil }
-//        return slides.map(\.markdown).joined(separator: "\n\n")
-//    }
-//}
 
 extension ChatMessage {
     var isFromAssistant: Bool {

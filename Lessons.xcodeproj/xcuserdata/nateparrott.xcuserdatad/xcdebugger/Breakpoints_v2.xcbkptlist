@@ -18,38 +18,6 @@
             endingLineNumber = "59"
             landmarkName = "generateUnits(forCourseWithId:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F7652854-7A36-43F8-BE00-2043EC517DEA - 596a5cd91c49e044"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for Lessons.LessonStore.generateUnits(forLessonWithId: Swift.String) async throws -&gt; ()"
-                  moduleName = "Lessons"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nateparrott/Documents/SW/Lessons/Lessons/Models/LessonGen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "488">
-               </Location>
-               <Location
-                  uuid = "F7652854-7A36-43F8-BE00-2043EC517DEA - 596a5cd91c49e044"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for Lessons.LessonStore.generateUnits(forLessonWithId: Swift.String) async throws -&gt; ()"
-                  moduleName = "Lessons"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nateparrott/Documents/SW/Lessons/Lessons/Models/LessonGen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "784">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -66,38 +34,6 @@
             endingLineNumber = "69"
             landmarkName = "unknown"
             landmarkType = "0">
-            <Locations>
-               <Location
-                  uuid = "580D4669-7353-4397-9DFF-554C9772CB3E - d12953b167de1605"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for Lessons.LessonStore.generateUnitContentIfNeeded(lesson: Lessons.Lesson, unitIndex: Swift.Int) async throws -&gt; ()"
-                  moduleName = "Lessons"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nateparrott/Documents/SW/Lessons/Lessons/Models/UnitGen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "3368">
-               </Location>
-               <Location
-                  uuid = "580D4669-7353-4397-9DFF-554C9772CB3E - 1a8a70903be75a07"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for Lessons.LessonStore.generateUnitContentIfNeeded(lesson: Lessons.Lesson, unitIndex: Swift.Int) async throws -&gt; ()"
-                  moduleName = "Lessons"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nateparrott/Documents/SW/Lessons/Lessons/Models/UnitGen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "320">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -206,57 +142,10 @@
             filePath = "Lessons/Chat/ChatGen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "7"
+            endingLineNumber = "7"
             landmarkName = "send(message:toThreadForUnit:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "013B1394-6187-4DA3-A8EF-1958645FBA7D - 582e28505855fcd3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for Lessons.ChatStore.send(message: Lessons.ChatMessage, toThreadForUnit: Lessons.UnitID) async throws -&gt; ()"
-                  moduleName = "Lessons"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nateparrott/Documents/SW/Uhoh/Lessons/Chat/ChatGen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "44">
-               </Location>
-               <Location
-                  uuid = "013B1394-6187-4DA3-A8EF-1958645FBA7D - c853bfdce7373c8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for Lessons.ChatStore.send(message: Lessons.ChatMessage, toThreadForUnit: Lessons.UnitID) async throws -&gt; ()"
-                  moduleName = "Lessons"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nateparrott/Documents/SW/Uhoh/Lessons/Chat/ChatGen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "44">
-               </Location>
-               <Location
-                  uuid = "013B1394-6187-4DA3-A8EF-1958645FBA7D - 34ba5787a23e80ad"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for Lessons.ChatStore.send(message: Lessons.ChatMessage, toThreadForUnit: Lessons.UnitID) async throws -&gt; ()"
-                  moduleName = "Lessons"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nateparrott/Documents/SW/Uhoh/Lessons/Chat/ChatGen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "292">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -305,38 +194,6 @@
             endingLineNumber = "18"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "691F5533-5ABD-4BD9-A90D-184AE9CC2895 - c834c4983a16248d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Lessons.InfoSlide.body.getter : some"
-                  moduleName = "Lessons"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nateparrott/Documents/SW/Uhoh/Lessons/Slides/InfoSlide.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18"
-                  offsetFromSymbolStart = "84">
-               </Location>
-               <Location
-                  uuid = "691F5533-5ABD-4BD9-A90D-184AE9CC2895 - 6d4ed4862e332e1f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () async -&gt; () in closure #2 () -&gt; () in Lessons.InfoSlide.body.getter : some"
-                  moduleName = "Lessons"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nateparrott/Documents/SW/Uhoh/Lessons/Slides/InfoSlide.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "192">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

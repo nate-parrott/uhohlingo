@@ -17,6 +17,7 @@
 		5F27948129FF554900F65FF4 /* BridgedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27948029FF554900F65FF4 /* BridgedTextField.swift */; };
 		5F27948329FF557000F65FF4 /* BridgedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27948229FF557000F65FF4 /* BridgedTextView.swift */; };
 		5F31F2F929FA08AB00B79E7C /* TitleSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31F2F829FA08AB00B79E7C /* TitleSlide.swift */; };
+		5F46A48D2C8514D100D3E82D /* ChatToys in Frameworks */ = {isa = PBXBuildFile; productRef = 5F46A48C2C8514D100D3E82D /* ChatToys */; };
 		5F57F76D29FB5A8000077992 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F76C29FB5A8000077992 /* Constants.swift */; };
 		5F57F77029FB5E8800077992 /* FunTitleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F76F29FB5E8800077992 /* FunTitleText.swift */; };
 		5F69680629D1005D005ECEEB /* ArrayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69680529D1005D005ECEEB /* ArrayUtils.swift */; };
@@ -115,6 +116,7 @@
 			files = (
 				5FB040B429D0EF7A008C24B1 /* OpenAIStreamingCompletions in Frameworks */,
 				5F69680929D10A59005ECEEB /* Ink in Frameworks */,
+				5F46A48D2C8514D100D3E82D /* ChatToys in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +292,7 @@
 			packageProductDependencies = (
 				5FB040B329D0EF7A008C24B1 /* OpenAIStreamingCompletions */,
 				5F69680829D10A59005ECEEB /* Ink */,
+				5F46A48C2C8514D100D3E82D /* ChatToys */,
 			);
 			productName = Lessons;
 			productReference = 5FB040A129D0EF52008C24B1 /* Lessons.app */;
@@ -322,6 +325,7 @@
 			packageReferences = (
 				5FB040B229D0EF7A008C24B1 /* XCRemoteSwiftPackageReference "openai-streaming-completions-swift" */,
 				5F69680729D10A59005ECEEB /* XCRemoteSwiftPackageReference "ink" */,
+				5F46A48B2C8514D100D3E82D /* XCRemoteSwiftPackageReference "chattoys" */,
 			);
 			productRefGroup = 5FB040A229D0EF52008C24B1 /* Products */;
 			projectDirPath = "";
@@ -599,6 +603,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5F46A48B2C8514D100D3E82D /* XCRemoteSwiftPackageReference "chattoys" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nate-parrott/chattoys";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		5F69680729D10A59005ECEEB /* XCRemoteSwiftPackageReference "ink" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/johnsundell/ink.git";
@@ -618,6 +630,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5F46A48C2C8514D100D3E82D /* ChatToys */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5F46A48B2C8514D100D3E82D /* XCRemoteSwiftPackageReference "chattoys" */;
+			productName = ChatToys;
+		};
 		5F69680829D10A59005ECEEB /* Ink */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5F69680729D10A59005ECEEB /* XCRemoteSwiftPackageReference "ink" */;

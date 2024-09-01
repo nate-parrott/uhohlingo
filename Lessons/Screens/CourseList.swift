@@ -45,7 +45,7 @@ struct CourseList: View {
             },
             trailingButton: {
                 Button("Add") {
-                    if UserDefaults.standard.string(forKey: "apiKey")?.nilIfEmpty == nil {
+                    if (try? ModelChoice.current.llm(json: false)) == nil {
                         showingSettings = true
                     } else {
                         showingNewCourseDialog = true

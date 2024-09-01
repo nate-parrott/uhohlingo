@@ -1,5 +1,6 @@
+import ChatToys
 import Foundation
-import OpenAIStreamingCompletions
+//import OpenAIStreamingCompletions
 
 enum UnitContentGenerationError: Error {
     case noSuchUnit
@@ -107,7 +108,9 @@ extension CourseStore {
         """, role: .system, priority: 200)
 
                 var lastContent: InfoSlideContent?
-                for await partial in try OpenAIAPI.shared.completeChatStreaming(.init(messages: prompt.packedPrompt(tokenCount: 2000), model: llmModel(), max_tokens: 2000, temperature: 0.1)) {
+                let messages = prompt.packedPrompt(tokenCount: 3000)
+                let llm = try ModelChoice.current.llm(json: false)
+                for try await partial in llm.completeStreaming(prompt: messages) {
                     if Task.isCancelled { return }
                     let content = InfoSlideContent(markdown: partial.content.trimmed, generationInProgress: true)
                     lastContent = content
@@ -135,14 +138,12 @@ extension CourseStore {
                 prompt.append("""
         Now, please write a series of \(count) quiz questions related to this topic.
 
-
         JSON schema for each question, in Typescript:
+        type Response = { "questions": Question[] }
         type Question = { "multipleChoice": MultipleChoice }
         type MultipleChoice = { question: string, correct: string, incorrect: string[] }
 
         Important rules for writing questions:
-        - Output each question on its own line, in JSON form, as type `Question` in the schema above.
-        - Do not include any additional text on each line besides the JSON string. (This means each line should begin with { and end with })
         - Questions should test knowledge introduced in this topic, but may depend on knowledge from previous units.
         - Questions should be of MODERATE DIFFICULTY (high school or college-level). The learner should need to absorb the unit's knowledge to answer the question. Common sense should not be sufficient to answer the question. False answers should seem plausible unless the learner knows the material.
         - Questions should require understanding of the material, and may pose hyptotheticals or raise examples. Avoid merely restating material.
@@ -157,20 +158,41 @@ extension CourseStore {
 
                 var seenQuestions = Set<Question.ID>()
 
-                for await partial in try OpenAIAPI.shared.completeChatStreaming(.init(messages: prompt.packedPrompt(tokenCount: 2000), model: llmModel(), max_tokens: 2000, temperature: 0.1)) {
-                    let questions = partial.content.components(separatedBy: .newlines)
-                        .enumerated()
-                        .compactMap { pair in
-                            let (index, line) = pair
-                            let id = "\(course.id.rawValue)/\(unitID.unit)/\(topic)/\(index)"
-                            return line.parseAsQuestion(id: id)
-                        }
+                let messages = prompt.packedPrompt(tokenCount: 3000)
+                let llm = try ModelChoice.current.llm(json: true)
+
+                struct _Response: Codable {
+                    var questions: [_Question]
+                    struct _Question: Codable {
+                        var multipleChoice: Question.MultipleChoice
+                    }
+                }
+
+                func handleResponse(_ response: _Response, partial: Bool) {
+                    var questions = response.questions.enumerated().compactMap { pair in
+                        let (index, rawQuestion) = pair
+                        let id = "\(course.id.rawValue)/\(unitID.unit)/\(topic)/\(index)"
+                        return Question(id: .init(id), multipleChoice: rawQuestion.multipleChoice)
+                    }
+                    if questions.count > 0 && partial {
+                        questions.removeLast()
+                    }
+//
                     for question in questions {
                         if !seenQuestions.contains(question.id) {
                             seenQuestions.insert(question.id)
                             continuation.yield(question)
                         }
                     }
+                }
+
+                var resp: _Response?
+                for try await partial in llm.completeStreamingWithJSONObject(prompt: messages, type: _Response.self, completeLinesOnly: true) {
+                    resp = partial
+                    handleResponse(partial, partial: true)
+                }
+                if let resp {
+                    handleResponse(resp, partial: false)
                 }
                 continuation.finish()
             }
